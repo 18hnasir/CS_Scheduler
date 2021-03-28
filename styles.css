@@ -1,1 +1,29 @@
+.container-fluid {
+  padding: 1%;
+}
+
+.navbar-brand {
+  color: black;
+  font-weight: bold;
+}
+
+.navbar-brand:hover {
+  color: black;
+}
+
+.nav-link {
+  color: black;
+}
+
+.nav-link:hover {
+  color: black;
+}
+
+#title {
+  background-color: white;
+}
+
+#generate_button {
+  padding: 2%;
+}
 
