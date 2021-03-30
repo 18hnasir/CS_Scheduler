@@ -7,8 +7,13 @@ generateSchedule(courses);
 function generateSchedule(coursesTaken){
 
     var nextSemesterClasses = [];
-    var scienceList = ["BIOL103", "BIOL106", "BIOL107","CHEM211", "CHEM213","CHEM212", "CHEM214","GEOL101", "PHYS160", "PHYS161","PHYS260", "PHYS261"];
 
+    /* add mason core comm and math loops here*/
+
+
+
+    // adds a science course to the user's schedule, still need to impliment a limit of 12 science credits and one sequential science course
+    var scienceList = ["BIOL103", "BIOL106", "BIOL107","CHEM211", "CHEM213","CHEM212", "CHEM214","GEOL101", "PHYS160", "PHYS161","PHYS260", "PHYS261"];
     var scienceLoopStop = false;
     scienceList.forEach(scienceClass => {
         if(hasPreReqs(coursesTaken, scienceClass) && !coursesTaken.includes(scienceClass) && !scienceLoopStop){
@@ -22,8 +27,14 @@ function generateSchedule(coursesTaken){
     });
     console.log(nextSemesterClasses);
 
+    /*add cs Core loop here */
 
 
+    // add cs related here
+    
+
+
+    /* add senior cs loop here*/
 
 
 }
