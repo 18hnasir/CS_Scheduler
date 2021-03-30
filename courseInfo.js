@@ -1,5 +1,5 @@
 
-function getPreReq(className){
+export function getPreReq(className){
 
 // not fully implimented
 
@@ -24,10 +24,10 @@ function getPreReq(className){
     "ECE350" : ["CS262", "ECE301", "ECE332", "ECE280"], "ECE446" : ["CS465", "ECE445"],"ECE447" : ["ECE350"], "ECE511" : ["CS465"],
     "SWE432" : ["MATH125", "CS321"], "SWE437" : ["MATH125", "CS310"],"SWE443" : ["CS321"], "SYST371" : ["SYST210"],
     "SYST470" : ["STAT344", "SYST210"], "PHIL371" : [],"PHIL376" : ["PHIL173"], "ENGH388" : ["ENGH302"]};
-
+    return courses[className];
 }
 
-function getCredits(className){
+export function getCredits(className){
 
 // still needed: any math over 351, and electives
 
