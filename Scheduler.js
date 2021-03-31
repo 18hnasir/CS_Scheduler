@@ -69,6 +69,12 @@ function generateSchedule(coursesTaken){
     });
 
     /*add cs Core loop here */
+    var csCoreList = [""]
+    var csCoreLoop = false;
+    var csCoreCredits = 0;
+    for (var i = 0; i < csRelatedList.length; i++){
+        ;
+    }
 
 
     // adds a cs related course to next semester's schedule
