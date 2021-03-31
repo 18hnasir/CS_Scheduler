@@ -12,8 +12,38 @@ function generateSchedule(coursesTaken){
     var nextSemesterClasses = [];
 
     /* add mason core comm and math loops here*/
+    var mason_core = ["Written Communication", "Literature", "Arts", "Western Civilization/World History", "Social and Behavioral Science", "Global Understanding"];
+    var communication = ["COMM100", "ENGH302"];
+    var math = ["MATH113", "MATH114" , "MATH125", "MATH203", "MATH203", "MATH213", "STAT344"];
+    var c; //count
 
+    for (c in mason_core) {
+      if (coursesTaken.includes(mason_core[c])) {
 
+      }
+      else {
+        nextSemesterClases.push(mason_core[c]);
+        break;
+      }
+    }
+    for (c in communication) {
+      if (coursesTaken.includes(communication[c])) {
+
+      }
+      else {
+        nextSemesterClases.push(communication[c]);
+        break;
+      }
+    }
+    for (c in math) {
+      if (coursesTaken.includes(math[c])) {
+
+      }
+      else {
+        nextSemesterClases.push(math[c]);
+        break;
+      }
+    }
 
     // adds a science course to the user's schedule, only thing that will need to be fixed is in the case of the student failing a class but passing a lab but otherwise seems to work
     var scienceList = ["BIOL103", "BIOL106","CHEM211","CHEM212","GEOL101", "PHYS160","PHYS260"];
