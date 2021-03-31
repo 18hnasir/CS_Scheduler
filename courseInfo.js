@@ -23,7 +23,7 @@ export function getPreReq(className){
     "ECE331" : ["CS112", "PHYS261"], "ECE231" : ["CS112", "PHYS261"],"ECE332" : ["CS112", "PHYS261"], "ECE232" : ["CS112", "PHYS261"],
     "ECE350" : ["CS262", "ECE301", "ECE332", "ECE280"], "ECE446" : ["CS465", "ECE445"],"ECE447" : ["ECE350"], "ECE511" : ["CS465"],
     "SWE432" : ["MATH125", "CS321"], "SWE437" : ["MATH125", "CS310"],"SWE443" : ["CS321"], "SYST371" : ["SYST210"],
-    "SYST470" : ["STAT344", "SYST210"], "PHIL371" : [],"PHIL376" : ["PHIL173"], "ENGH388" : ["ENGH302"]};
+    "SYST470" : ["STAT344", "SYST210"], "PHIL371" : ["3Creds"],"PHIL376" : ["PHIL173"], "ENGH388" : ["ENGH302"]};
     return courses[className];
 }
 
