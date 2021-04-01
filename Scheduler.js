@@ -22,7 +22,7 @@ function generateSchedule(coursesTaken){
 
       }
       else {
-        nextSemesterClases.push(mason_core[c]);
+        nextSemesterClasses.push(mason_core[c]);
         break;
       }
     }
@@ -31,7 +31,7 @@ function generateSchedule(coursesTaken){
 
       }
       else {
-        nextSemesterClases.push(communication[c]);
+        nextSemesterClasses.push(communication[c]);
         break;
       }
     }
@@ -40,7 +40,7 @@ function generateSchedule(coursesTaken){
 
       }
       else {
-        nextSemesterClases.push(math[c]);
+        nextSemesterClasses.push(math[c]);
         break;
       }
     }
