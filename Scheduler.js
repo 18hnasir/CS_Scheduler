@@ -4,7 +4,7 @@ import { getCredits } from './courseInfo.js';
 // you can use this array to test the schedule generation with different classes taken
 var courses = ["CS112", "BIOL103", "BIOL106", "BIOL107", "CS321", "SWE443", "CS332", "CHEM211", "CHEM213"];
 generateSchedule(courses);
-
+ 
 
 function generateSchedule(coursesTaken){
 
@@ -49,11 +49,14 @@ function generateSchedule(coursesTaken){
     var scienceList = ["BIOL103", "BIOL106","CHEM211","CHEM212","GEOL101", "PHYS160","PHYS260"];
     var scienceLoopStop = false;
     var scienceClassesTaken = 0;
+
+    // Checks courses already taken and if it is in scienceList increment scienceClassesaTaken.
     for(var i=0;i<scienceList.length;i++){
         if(coursesTaken.includes(scienceList[i])){
             scienceClassesTaken++;
         }
     }
+    // Considering that the student has taken three science classes, they do not need to take anymore classes.
     scienceList.forEach(scienceClass => {
         if(scienceClassesTaken == 3){
             scienceLoopStop = true;
@@ -99,11 +102,23 @@ function generateSchedule(coursesTaken){
     });
 
     /*add cs Core loop here */
-    var csCoreList = [""]
-    var csCoreLoop = false;
+    var csCoreList = ["CS110","CS112","CS211","CS262","CS306","CS310","CS321","CS330","CS367","CS471","CS483"];
+    var csCoreLoopStop = false;
     var csCoreCredits = 0;
     for (var i = 0; i < csRelatedList.length; i++){
-        ;
+        if(coursesTaken.includes(csCoreList[i])){
+            csCoreCredits += getCredits(csRelatedList[i]);
+        }
+    }
+    csRelatedList.forEach(csClass => {
+        if (csRelatedCredits >= 6){
+            csCoreLoop = true;
+        }
+        if (hasPreReqs(coursesTaken, csClass) && !coursesTaken.includes(csClass) && !csCoreLoop){
+            nextSemesterClasses.push(csClass);
+            csCoreLoopStop = true;
+            return;
+        }
     }
 
 
