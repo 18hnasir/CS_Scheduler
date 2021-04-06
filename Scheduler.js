@@ -124,7 +124,7 @@ function generateSchedule(coursesTaken) {
             csCoreLoopStop = true;
             return;
         }
-    }
+    });
 
     // adds a cs related course to next semester's schedule
     var csRelatedList = ["STAT354", "OR335", "OR441", "OR442", "ECE301", "ECE331", "ECE231", "ECE332", "ECE232",
@@ -165,17 +165,17 @@ function generateSchedule(coursesTaken) {
 
     csSeniorList.forEach(csClass => {
         if (csSeniorCredits >= 15) {
-            csLoopStop = true;
+            csSeniorLoopStop = true;
         }
-        if ((!coursesTaken.includes("CS455") && hasPreReqs(coursesTaken,"CS455") || !coursesTaken.includes("CS468") && hasPreReqs(coursesTaken, "CS468") || !coursesTaken.includes("CS475") && hasPreReqs(coursesTaken, "CS475")) && !csLoopStop) {
+        if ((!coursesTaken.includes("CS455") && hasPreReqs(coursesTaken,"CS455") || !coursesTaken.includes("CS468") && hasPreReqs(coursesTaken, "CS468") || !coursesTaken.includes("CS475") && hasPreReqs(coursesTaken, "CS475")) && !csSeniorLoopStop) {
             nextSemesterClasses.push("CS455");
             return;
         }
 
-        if (!csLoopStop && (csClass != "CS455" || csClass != "CS455" || csClass != "CS468") && hasPreReqs(coursesTaken, csClass)){
+        if (!csSeniorLoopStop && (csClass != "CS455" || csClass != "CS455" || csClass != "CS468") && hasPreReqs(coursesTaken, csClass)){
             nextSemesterClasses.push(csClass);
         }
-    }
+    });
 
     // will print out next semester's classes (for testing purposes)
     console.log(nextSemesterClasses);
