@@ -175,7 +175,7 @@ function generateSchedule(coursesTaken) {
 
         if (!csSeniorLoopStop && (csClass != "CS455" || csClass != "CS455" || csClass != "CS468") && hasPreReqs(coursesTaken, csClass)){
             nextSemesterClasses.push(csClass);
-            csSeniorLoopStop = true;
+            return;
         }
     });
 
