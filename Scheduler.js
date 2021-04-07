@@ -2,7 +2,7 @@ import { getPreReq } from './courseInfo.js';
 import { getCredits } from './courseInfo.js';
 
 // you can use this array to test the schedule generation with different classes taken
-var courses = ["CS112", "BIOL103", "BIOL106", "BIOL107", "CS321", "SWE443", "CS332", "CHEM211", "CHEM213"];
+var courses = ["CS112", "BIOL103", "BIOL106", "BIOL107", "CS321", "SWE443", "CS332", "CHEM211", "CHEM213", "CS310", "CS367"];
 generateSchedule(courses);
 
 
@@ -103,7 +103,7 @@ function generateSchedule(coursesTaken) {
 
     /*add cs Core loop here */
     var csCoreList = ["CS110", "CS112", "CS211", "CS262", "CS306", "CS310", "CS321", "CS330", "CS367", "CS471", "CS483"];
-    var csCoreLoopStop = false;
+    var csCoreLoop = false;
     var csCoreCredits = 0;
 
     // Keep track of the amount of credits the student takes for cs core classes
@@ -121,7 +121,7 @@ function generateSchedule(coursesTaken) {
 
         if (hasPreReqs(coursesTaken, csClass) && !coursesTaken.includes(csClass) && !csCoreLoop) {
             nextSemesterClasses.push(csClass);
-            csCoreLoopStop = true;
+            csCoreLoop = true;
             return;
         }
     });
@@ -152,7 +152,7 @@ function generateSchedule(coursesTaken) {
     /* add senior cs loop here*/
     var csSeniorList = ["CS455", "CS468", "CS475", "CS425", "CS440", "CS450", "CS451", "CS455",
         "CS463", "CS465", "CS468", "CS469", "CS475", "CS477", "CS480", "CS482", "CS484", "CS485",
-        "CS490", "CS491", "CS499", "MATH446", "MATH481"];
+        "CS490", "CS491", "CS499", "MATH446", "OR481"];
     var csSeniorLoopStop = false;
     var csSeniorCredits = 0;
 
@@ -169,11 +169,13 @@ function generateSchedule(coursesTaken) {
         }
         if ((!coursesTaken.includes("CS455") && hasPreReqs(coursesTaken,"CS455") || !coursesTaken.includes("CS468") && hasPreReqs(coursesTaken, "CS468") || !coursesTaken.includes("CS475") && hasPreReqs(coursesTaken, "CS475")) && !csSeniorLoopStop) {
             nextSemesterClasses.push("CS455");
+            csSeniorLoopStop = true;
             return;
         }
 
         if (!csSeniorLoopStop && (csClass != "CS455" || csClass != "CS455" || csClass != "CS468") && hasPreReqs(coursesTaken, csClass)){
             nextSemesterClasses.push(csClass);
+            csSeniorLoopStop = true;
         }
     });
 
