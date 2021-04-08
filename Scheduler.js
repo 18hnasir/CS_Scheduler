@@ -6,12 +6,12 @@ var courses = ["CS112", "BIOL103", "BIOL106", "BIOL107", "CS321", "SWE443", "CS3
 generateSchedule(courses);
 
 
-function generateSchedule(coursesTaken) {
+function generateSchedule(coursesTaken, creditsPreferred) {
 
     // array containing next semester's classes
     var nextSemesterClasses = [];
 
-    /* add mason core comm and math loops here*/
+    /* adds a mason core to the schedule*/
     var mason_core = ["Written Communication", "Literature", "Arts", "Western Civilization/World History", "Social and Behavioral Science", "Global Understanding"];
     var communication = ["COMM100", "ENGH302"];
     var math = ["MATH113", "MATH114", "MATH125", "MATH203", "MATH203", "MATH213", "STAT344"];
@@ -101,7 +101,7 @@ function generateSchedule(coursesTaken) {
         }
     });
 
-    /*add cs Core loop here */
+    /*adds a cs core class to the schedule */
     var csCoreList = ["CS110", "CS112", "CS211", "CS262", "CS306", "CS310", "CS321", "CS330", "CS367", "CS471", "CS483"];
     var csCoreLoop = false;
     var csCoreCredits = 0;
@@ -149,7 +149,7 @@ function generateSchedule(coursesTaken) {
     )
 
 
-    /* add senior cs loop here*/
+    /* adds a senior level cs class to the schedule*/
     var csSeniorList = ["CS455", "CS468", "CS475", "CS425", "CS440", "CS450", "CS451", "CS455",
         "CS463", "CS465", "CS468", "CS469", "CS475", "CS477", "CS480", "CS482", "CS484", "CS485",
         "CS490", "CS491", "CS499", "MATH446", "OR481"];
