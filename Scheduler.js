@@ -224,6 +224,7 @@ function generateSchedule(coursesTaken, creditsPreferred) {
         nextSemesterClasses = [];
     }
     console.log(semestersUntilGraduation);
+    console.log(graduationDate(semestersUntilGraduation));
     return semestersUntilGraduation;
 }
 
@@ -271,4 +272,8 @@ function getSemesterCost(semester){
     else{
         return 4530 + ((numCredits - 15) * 377.5) + 1752 + ((numCredits - 15) * 146);
     }
+}
+
+function graduationDate(listOfSemesters){
+    return "Expected Graduation in " + listOfSemesters.length + " semesters";
 }
