@@ -55,7 +55,8 @@ export function getCredits(className){
     "ECE331" : 3, "ECE231" : 3,"ECE332" : 3, "ECE232" : 3,
     "ECE350" : 3, "ECE446" : 3,"ECE447" : 3, "ECE511" : 3,
     "SWE432" : 3, "SWE437" : 3,"SWE443" : 3, "SYST371" : 3,
-    "SYST470" : 3, "PHIL371" : 3,"PHIL376" : 3, "ENGH388" : 3, "Literature" : 3};
+    "SYST470" : 3, "PHIL371" : 3,"PHIL376" : 3, "ENGH388" : 3, "Literature" : 3,
+    "Written Communication" : 3, "Arts" : 3, "Global Understanding" : 3, "Social and Behavioral Science" : 3, "Western Civilization/World History" : 3};
 
     return courses[className];
 }

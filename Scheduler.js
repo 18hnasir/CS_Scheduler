@@ -181,6 +181,8 @@ function generateSchedule(coursesTaken) {
 
     // will print out next semester's classes (for testing purposes)
     console.log(nextSemesterClasses);
+    console.log(getSemesterCredits(nextSemesterClasses));
+    console.log(getSemesterCost(nextSemesterClasses));
 }
 
 // function checks if the prerequisites of a class are contained in the list of courses taken.
@@ -194,4 +196,28 @@ function hasPreReqs(coursesTaken, class1) {
         }
     });
     return canTake;
+}
+
+// function that returns the number of credits in a semester
+function getSemesterCredits(semester){
+    var numCredits = 0;
+    for(var i=0;i<semester.length;i++){
+        numCredits += getCredits(semester[i]);
+    }
+    return numCredits;
+}
+
+// returns cost of semester based on number of credits, note: this is for in-state tuition and does not include out of state
+// this also does not include lab fees and other course related fees
+function getSemesterCost(semester){
+    var numCredits = getSemesterCredits(semester);
+    if(numCredits < 12){
+        return numCredits * 377.5 + numCredits * 146;
+    }
+    else if(numCredits < 16 && numCredits > 11){
+        return 4530 + 1752;
+    }
+    else{
+        return 4530 + ((numCredits - 15) * 377.5) + 1752 + ((numCredits - 15) * 146);
+    }
 }
