@@ -23,7 +23,8 @@ export function getPreReq(className){
     "ECE331" : ["CS112", "PHYS261"], "ECE231" : ["CS112", "PHYS261"],"ECE332" : ["CS112", "PHYS261"], "ECE232" : ["CS112", "PHYS261"],
     "ECE350" : ["CS262", "ECE301", "ECE332", "ECE280"], "ECE446" : ["CS465", "ECE445"],"ECE447" : ["ECE350"], "ECE511" : ["CS465"],
     "SWE432" : ["MATH125", "CS321"], "SWE437" : ["MATH125", "CS310"],"SWE443" : ["CS321"], "SYST371" : ["SYST210"],
-    "SYST470" : ["STAT344", "SYST210"], "PHIL371" : ["3Creds"],"PHIL376" : ["PHIL173"], "ENGH388" : ["ENGH302"]};
+    "SYST470" : ["STAT344", "SYST210"], "PHIL371" : ["3Creds"],"PHIL376" : ["PHIL173"], "ENGH388" : ["ENGH302"], 
+"ENGH101" : []};
     return courses[className];
 }
 
@@ -56,7 +57,8 @@ export function getCredits(className){
     "ECE350" : 3, "ECE446" : 3,"ECE447" : 3, "ECE511" : 3,
     "SWE432" : 3, "SWE437" : 3,"SWE443" : 3, "SYST371" : 3,
     "SYST470" : 3, "PHIL371" : 3,"PHIL376" : 3, "ENGH388" : 3, "Literature" : 3,
-    "Written Communication" : 3, "Arts" : 3, "Global Understanding" : 3, "Social and Behavioral Science" : 3, "Western Civilization/World History" : 3};
+    "Written Communication" : 3, "Arts" : 3, "Global Understanding" : 3, "Social and Behavioral Science" : 3, "Western Civilization/World History" : 3,
+"ENGH101" : 3};
 
     return courses[className];
 }
