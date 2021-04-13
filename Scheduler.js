@@ -11,6 +11,7 @@ function generateSchedule(coursesTaken, creditsPreferred) {
 
     var semestersUntilGraduation = [];
     var nextSemesterClasses = [];
+    
     // list of courses organized by category
     var csCoreList = ["CS110", "CS112", "CS211", "CS262", "CS306", "CS310", "CS321", "CS330", "CS367", "CS471", "CS483"];
     var mason_core = ["Written Communication", "Literature", "Arts", "Western Civilization/World History", "Social and Behavioral Science", "Global Understanding"];
