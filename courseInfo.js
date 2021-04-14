@@ -29,9 +29,6 @@ export function getPreReq(className){
 }
 
 export function getCredits(className){
-
-// still needed: any math over 351, and electives
-
     var courses = {"CS110" : 3, "CS100" : 3,"CS112" : 4, 
     "CS101" : 2,"CS105" : 1, "CS211" : 3,"CS222" : 3, 
     "CS262" : 3,"CS306" : 3, "CS310" : 3,"CS321" : 3, "CS325" : 3,

@@ -2,7 +2,7 @@ import { getPreReq } from './courseInfo.js';
 import { getCredits } from './courseInfo.js';
 
 // you can use this array to test the schedule generation with different classes taken
-function generateSchedule(coursesTaken, creditsPreferred) {
+export function generateSchedule(coursesTaken, creditsPreferred) {
 
     var semestersUntilGraduation = [];
     var nextSemesterClasses = [];
@@ -36,7 +36,7 @@ function generateSchedule(coursesTaken, creditsPreferred) {
                     break;
                 }
             }
-            if(creditsPref < getSemesterCredits(nextSemesterClasses)){
+            if(creditsPreferred < getSemesterCredits(nextSemesterClasses)){
                 creditsInSemester = getSemesterCredits(nextSemesterClasses);
                 break;
             }
@@ -50,7 +50,7 @@ function generateSchedule(coursesTaken, creditsPreferred) {
                     break;
                 }
             }
-            if(creditsPref < getSemesterCredits(nextSemesterClasses)){
+            if(creditsPreferred < getSemesterCredits(nextSemesterClasses)){
                 creditsInSemester = getSemesterCredits(nextSemesterClasses);
                 break;
             }
@@ -64,7 +64,7 @@ function generateSchedule(coursesTaken, creditsPreferred) {
                     break;
                 }
             }
-            if(creditsPref < getSemesterCredits(nextSemesterClasses)){
+            if(creditsPreferred < getSemesterCredits(nextSemesterClasses)){
                 creditsInSemester = getSemesterCredits(nextSemesterClasses);
                 break;
             }
@@ -79,7 +79,6 @@ function generateSchedule(coursesTaken, creditsPreferred) {
                     scienceClassesTaken++;
                 }
             }
-            console.log(scienceList);
             // Considering that the student has taken three science classes, they do not need to take anymore classes.
             scienceList.forEach(scienceClass => {
                 if(scienceLoopStop){
@@ -130,7 +129,7 @@ function generateSchedule(coursesTaken, creditsPreferred) {
                     return;
                 }
             });
-            if(creditsPref < getSemesterCredits(nextSemesterClasses)){
+            if(creditsPreferred < getSemesterCredits(nextSemesterClasses)){
                 creditsInSemester = getSemesterCredits(nextSemesterClasses);
                 break;
             }
@@ -158,7 +157,7 @@ function generateSchedule(coursesTaken, creditsPreferred) {
                     return;
                 }
             });
-            if(creditsPref < getSemesterCredits(nextSemesterClasses)){
+            if(creditsPreferred < getSemesterCredits(nextSemesterClasses)){
                 creditsInSemester = getSemesterCredits(nextSemesterClasses);
                 break;
             }
@@ -182,7 +181,7 @@ function generateSchedule(coursesTaken, creditsPreferred) {
                 }
             }
             )
-            if(creditsPref < getSemesterCredits(nextSemesterClasses)){
+            if(creditsPreferred < getSemesterCredits(nextSemesterClasses)){
                 creditsInSemester = getSemesterCredits(nextSemesterClasses);
                 break;
             }
@@ -220,7 +219,7 @@ function generateSchedule(coursesTaken, creditsPreferred) {
                     return;
                 }
             });
-            if(creditsPref < getSemesterCredits(nextSemesterClasses)){
+            if(creditsPreferred < getSemesterCredits(nextSemesterClasses)){
                 creditsInSemester = getSemesterCredits(nextSemesterClasses);
                 break;
             }
@@ -235,7 +234,7 @@ function generateSchedule(coursesTaken, creditsPreferred) {
 }
 
 // function checks if the prerequisites of a class are contained in the list of courses taken.
-function hasPreReqs(coursesTaken, class1) {
+export function hasPreReqs(coursesTaken, class1) {
     var listOfPreReqs = getPreReq(class1);
     var canTake = true;
     listOfPreReqs.forEach(req => {
@@ -247,7 +246,7 @@ function hasPreReqs(coursesTaken, class1) {
     return canTake;
 }
 // returns true or false depending on whether the user has met all user requirements
-function meetsRequirements(coursesTaken){
+export function meetsRequirements(coursesTaken){
     if(getSemesterCredits(coursesTaken) < 120){
         return false;
     }
@@ -257,7 +256,7 @@ function meetsRequirements(coursesTaken){
 }
 
 // function that returns the number of credits in a semester
-function getSemesterCredits(semester){
+export function getSemesterCredits(semester){
     var numCredits = 0;
     for(var i=0;i<semester.length;i++){
         numCredits += getCredits(semester[i]);
@@ -267,28 +266,26 @@ function getSemesterCredits(semester){
 
 // returns cost of semester based on number of credits, note: this is for in-state tuition and does not include out of state
 // this also does not include lab fees and other course related fees
-function getSemesterCost(semester){
+export function getSemesterCost(semester){
     var numCredits = getSemesterCredits(semester);
     if(numCredits < 12){
-        return numCredits * 377.5 + numCredits * 146;
+        return numCredits * 396.25 + numCredits * 146;
     }
     else if(numCredits < 16 && numCredits > 11){
-        return 4530 + 1752;
+        return 4755 + 1752;
     }
     else{
-        return 4530 + ((numCredits - 15) * 377.5) + 1752 + ((numCredits - 15) * 146);
+        return 4755 + ((numCredits - 15) * 396.25) + 1752 + ((numCredits - 15) * 146);
     }
 }
 
 // function that returns the number of semesters until graduation
-function graduationDate(listOfSemesters){
+export function graduationDate(listOfSemesters){
     return "Expected Graduation in " + listOfSemesters.length + " semesters";
 }
 
 // function that will shuffle class arrays to randomize schedule generation
-function shuffle(courseList) {
+export function shuffle(courseList) {
     courseList.sort(() => Math.random() - 0.5);
     return courseList
-  }
-
-  module.exports = Scheduler;
+}
