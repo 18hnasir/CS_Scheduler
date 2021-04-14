@@ -149,7 +149,7 @@ function generateSchedule(coursesTaken, creditsPreferred) {
                     csCoreLoop = true;
                 }
 
-                if (hasPreReqs(coursesTaken, csClass) && !coursesTaken.includes(csClass) && !csCoreLoop) {
+                if (hasPreReqs(coursesTaken, csClass) && !coursesTaken.includes(csClass) && !csCoreLoop && !nextSemesterClasses.includes(csClass)) {
                     nextSemesterClasses.push(csClass);
                     csCoreList.shift();
                     csCoreLoop = true;
@@ -200,13 +200,18 @@ function generateSchedule(coursesTaken, creditsPreferred) {
                 if (csSeniorCredits >= 15) {
                     csSeniorLoopStop = true;
                 }
-                if ((!coursesTaken.includes("CS455") && hasPreReqs(coursesTaken,"CS455") && !coursesTaken.includes("CS468") && hasPreReqs(coursesTaken, "CS468") && !coursesTaken.includes("CS475") && hasPreReqs(coursesTaken, "CS475")) && !csSeniorLoopStop) {
-                    nextSemesterClasses.push("CS455");
+                if ((!coursesTaken.includes("CS455") && hasPreReqs(coursesTaken,"CS455") && !coursesTaken.includes("CS468") && hasPreReqs(coursesTaken, "CS468") && !coursesTaken.includes("CS475") && hasPreReqs(coursesTaken, "CS475")) && !csSeniorLoopStop
+                && !nextSemesterClasses.includes("CS455") && !nextSemesterClasses.includes("CS468") && !nextSemesterClasses.includes("CS475")) {
+                    var csSeniorMustIncludes = ["CS455", "CS468", "CS475"];
+                    csSeniorMustIncludes = shuffle(csSeniorMustIncludes);
+                    nextSemesterClasses.push(csSeniorMustIncludes[0]);
+                    csSeniorList.shift()
                     csSeniorLoopStop = true;
                     return;
                 }
 
-                if (!csSeniorLoopStop && (csClass != "CS455" || csClass != "CS475" || csClass != "CS468") && hasPreReqs(coursesTaken, csClass)){
+                if (!coursesTaken.includes(csClass) && !csSeniorLoopStop && (csClass != "CS455" || csClass != "CS475" || csClass != "CS468") && hasPreReqs(coursesTaken, csClass)
+                && !nextSemesterClasses.includes(csClass)){
                     nextSemesterClasses.push(csClass);
                     csSeniorList.shift();
                     csSeniorLoopStop = true;
@@ -275,6 +280,13 @@ function getSemesterCost(semester){
     }
 }
 
+// function that returns the number of semesters until graduation
 function graduationDate(listOfSemesters){
     return "Expected Graduation in " + listOfSemesters.length + " semesters";
 }
+
+// function that will shuffle class arrays to randomize schedule generation
+function shuffle(courseList) {
+    courseList.sort(() => Math.random() - 0.5);
+    return courseList
+  }
