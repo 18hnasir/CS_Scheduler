@@ -14,12 +14,12 @@ function generateSchedule(coursesTaken, creditsPreferred) {
     
     // list of courses organized by category
     var csCoreList = ["CS110", "CS112", "CS211", "CS262", "CS306", "CS310", "CS321", "CS330", "CS367", "CS471", "CS483"];
-    var mason_core = ["Written Communication", "Literature", "Arts", "Western Civilization/World History", "Social and Behavioral Science", "Global Understanding"];
+    var mason_core = shuffle(["Written Communication", "Literature", "Arts", "Western Civilization/World History", "Social and Behavioral Science", "Global Understanding"]);
     var communication = ["ENGH101", "COMM100", "ENGH302"];
     var math = ["MATH113", "MATH114", "MATH125", "MATH203", "MATH203", "MATH213", "STAT344"];
-    var scienceList = ["BIOL103", "BIOL106", "CHEM211", "CHEM212", "GEOL101", "PHYS160", "PHYS260"];
-    var csRelatedList = ["STAT354", "OR335", "OR441", "OR442", "ECE301", "ECE331", "ECE231", "ECE332", "ECE232",
-    "ECE350", "ECE446", "ECE447", "ECE511", "SWE432", "SWE437", "SWE443", "SYST371", "SYST470", "PHIL371", "PHIL376", "ENGH388", "CS332", "CS351"];
+    var scienceList = shuffle(["BIOL103", "CHEM211","GEOL101", "PHYS160"]);
+    var csRelatedList = shuffle(["STAT354", "OR335", "OR441", "OR442", "ECE301", "ECE331", "ECE231", "ECE332", "ECE232",
+    "ECE350", "ECE446", "ECE447", "ECE511", "SWE432", "SWE437", "SWE443", "SYST371", "SYST470", "PHIL371", "PHIL376", "ENGH388", "CS332", "CS351"]);
     var csSeniorList = ["CS455", "CS468", "CS475", "CS425", "CS440", "CS450", "CS451", "CS455",
     "CS463", "CS465", "CS468", "CS469", "CS475", "CS477", "CS480", "CS482", "CS484", "CS485",
     "CS490", "CS491", "CS499", "MATH446", "OR481"];
@@ -84,47 +84,54 @@ function generateSchedule(coursesTaken, creditsPreferred) {
                     scienceClassesTaken++;
                 }
             }
+            console.log(scienceList);
             // Considering that the student has taken three science classes, they do not need to take anymore classes.
             scienceList.forEach(scienceClass => {
+                if(scienceLoopStop){
+                    return;
+                }
                 if (scienceClassesTaken == 3) {
                     scienceLoopStop = true;
                     return;
                 }
-                if (coursesTaken.includes("BIOL103") && !coursesTaken.includes("BIOL106") && !scienceLoopStop) {
+                else if (coursesTaken.includes("BIOL103") && !coursesTaken.includes("BIOL106") && !scienceLoopStop) {
                     nextSemesterClasses.push("BIOL106");
                     nextSemesterClasses.push("BIOL107");
                     scienceLoopStop = true;
                     return;
                 }
-                if (coursesTaken.includes("GEOL101") && !coursesTaken.includes("GEOL102") && !scienceLoopStop) {
+                else if (coursesTaken.includes("GEOL101") && !coursesTaken.includes("GEOL102") && !scienceLoopStop) {
                     nextSemesterClasses.push("GEOL102");
                     scienceLoopStop = true;
                     return;
                 }
-                if (coursesTaken.includes("CHEM211") && !coursesTaken.includes("CHEM212") && !scienceLoopStop) {
+                else if (coursesTaken.includes("CHEM211") && !coursesTaken.includes("CHEM212") && !scienceLoopStop) {
                     nextSemesterClasses.push("CHEM212");
                     nextSemesterClasses.push("CHEM214")
                     scienceLoopStop = true;
                     return;
                 }
-                if (coursesTaken.includes("PHYS160") && !coursesTaken.includes("PHYS260") && !scienceLoopStop) {
+                else if (coursesTaken.includes("PHYS160") && !coursesTaken.includes("PHYS260") && !scienceLoopStop) {
                     nextSemesterClasses.push("PHYS260");
                     nextSemesterClasses.push("PHYS261")
+                    
                     scienceLoopStop = true;
                     return;
                 }
-                if (hasPreReqs(coursesTaken, scienceClass) && !coursesTaken.includes(scienceClass) && !scienceLoopStop) {
+                else if (hasPreReqs(coursesTaken, scienceClass) && !coursesTaken.includes(scienceClass) && !scienceLoopStop) {
                     nextSemesterClasses.push(scienceClass);
                     if (scienceClass == "CHEM211") {
                         nextSemesterClasses.push("CHEM213");
                     }
-                    if (scienceClass == "PHYS160") {
+                    else if (scienceClass == "PHYS160") {
                         nextSemesterClasses.push("PHYS161");
                     }
+                    scienceList.shift();
                     scienceLoopStop = true;
                     return;
                 }
                 else {
+                    scienceLoopStop = true;
                     return;
                 }
             });
