@@ -2,11 +2,6 @@ import { getPreReq } from './courseInfo.js';
 import { getCredits } from './courseInfo.js';
 
 // you can use this array to test the schedule generation with different classes taken
-var courses = [];
-var creditsPref = 15
-generateSchedule(courses, creditsPref);
-
-
 function generateSchedule(coursesTaken, creditsPreferred) {
 
     var semestersUntilGraduation = [];
@@ -74,7 +69,7 @@ function generateSchedule(coursesTaken, creditsPreferred) {
                 break;
             }
 
-            // adds a science course to the user's schedule, only thing that will need to be fixed is in the case of the student failing a class but passing a lab but otherwise seems to work
+            // adds a science course to the user's schedule
             var scienceLoopStop = false;
             var scienceClassesTaken = 0;
 
@@ -236,8 +231,6 @@ function generateSchedule(coursesTaken, creditsPreferred) {
         coursesTaken = coursesTaken.concat(nextSemesterClasses);
         nextSemesterClasses = [];
     }
-    console.log(semestersUntilGraduation);
-    console.log(graduationDate(semestersUntilGraduation));
     return semestersUntilGraduation;
 }
 
@@ -297,3 +290,5 @@ function shuffle(courseList) {
     courseList.sort(() => Math.random() - 0.5);
     return courseList
   }
+
+  module.exports = Scheduler;

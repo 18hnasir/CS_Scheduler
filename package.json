@@ -1,1 +1,25 @@
-{ "type": "module" }
+{
+  "type": "module",
+  "devDependencies": {
+    "jest": "^26.6.3"
+  },
+  "scripts": {
+    "test": "schedulerTester.js"
+  },
+  "name": "CS_Scheduler",
+  "description": "",
+  "version": "1.0.0",
+  "main": "InputController.js",
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/18hnasir/CS_Scheduler.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/18hnasir/CS_Scheduler/issues"
+  },
+  "homepage": "https://github.com/18hnasir/CS_Scheduler#readme"
+}
