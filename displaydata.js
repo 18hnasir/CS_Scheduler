@@ -1,5 +1,5 @@
 import { getSemesterCost } from './Scheduler.js';
-import { getCredits } from './Scheduler.js';
+import { getCredits } from './courseInfo.js';
 import { graduationDate } from './Scheduler.js';
 
 function displayData() {
