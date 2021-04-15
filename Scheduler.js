@@ -12,13 +12,13 @@ export function generateSchedule(coursesTaken, creditsPreferred) {
     // list of courses organized by category
     var csCoreList = ["CS110", "CS112", "CS211", "CS262", "CS306", "CS310", "CS321", "CS330", "CS367", "CS471", "CS483"];
     var csCoreList2 = ["CS110", "CS112", "CS211", "CS262", "CS306", "CS310", "CS321", "CS330", "CS367", "CS471", "CS483"];
-    var mason_core = shuffle(["Written Communication", "Literature", "Arts", "Western Civilization/World History", "Social and Behavioral Science", "Global Understanding"]);
+    var mason_core = ["Written Communication", "Literature", "Arts", "Western Civilization/World History", "Social and Behavioral Science", "Global Understanding"];
     var communication = ["ENGH101", "COMM100", "ENGH302"];
     var math = ["MATH113", "MATH114", "MATH125", "MATH203", "MATH203", "MATH213", "STAT344"];
-    var scienceList = shuffle(["BIOL103", "CHEM211","GEOL101", "PHYS160"]);
+    var scienceList = ["BIOL103", "CHEM211","GEOL101", "PHYS160"];
     var scienceList2 = ["BIOL103", "CHEM211","GEOL101", "PHYS160"];
-    var csRelatedList = shuffle(["STAT354", "OR335", "OR441", "OR442", "ECE301", "ECE331", "ECE231", "ECE332", "ECE232",
-    "ECE350", "ECE446", "ECE447", "ECE511", "SWE432", "SWE437", "SWE443", "SYST371", "SYST470", "PHIL371", "PHIL376", "ENGH388", "CS332", "CS351"]);
+    var csRelatedList = ["STAT354", "OR335", "OR441", "OR442", "ECE301", "ECE331", "ECE231", "ECE332", "ECE232",
+    "ECE350", "ECE446", "ECE447", "ECE511", "SWE432", "SWE437", "SWE443", "SYST371", "SYST470", "PHIL371", "PHIL376", "ENGH388", "CS332", "CS351"];
     var csRelatedList2 = ["STAT354", "OR335", "OR441", "OR442", "ECE301", "ECE331", "ECE231", "ECE332", "ECE232",
     "ECE350", "ECE446", "ECE447", "ECE511", "SWE432", "SWE437", "SWE443", "SYST371", "SYST470", "PHIL371", "PHIL376", "ENGH388", "CS332", "CS351"];
     var csSeniorList = ["CS455", "CS468", "CS475", "CS425", "CS440", "CS450", "CS451", "CS455",
@@ -236,6 +236,7 @@ export function generateSchedule(coursesTaken, creditsPreferred) {
         coursesTaken = coursesTaken.concat(nextSemesterClasses);
         nextSemesterClasses = [];
     }
+    console.log(semestersUntilGraduation);
     return semestersUntilGraduation;
 }
 
