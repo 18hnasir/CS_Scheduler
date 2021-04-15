@@ -4,6 +4,7 @@ import { getCredits } from './courseInfo.js';
 // you can use this array to test the schedule generation with different classes taken
 export function generateSchedule(coursesTaken, creditsPreferred) {
 
+    // keeps track of next semester and when that is filled up, it will add that semester to our semester's until graduation list
     var semestersUntilGraduation = [];
     var nextSemesterClasses = [];
     
@@ -17,8 +18,6 @@ export function generateSchedule(coursesTaken, creditsPreferred) {
     var scienceList2 = ["BIOL103", "CHEM211","GEOL101", "PHYS160"];
     var csRelatedList = shuffle(["STAT354", "OR335", "OR441", "OR442", "ECE301", "ECE331", "ECE231", "ECE332", "ECE232",
     "ECE350", "ECE446", "ECE447", "ECE511", "SWE432", "SWE437", "SWE443", "SYST371", "SYST470", "PHIL371", "PHIL376", "ENGH388", "CS332", "CS351"]);
-    var csRelatedList2 = ["STAT354", "OR335", "OR441", "OR442", "ECE301", "ECE331", "ECE231", "ECE332", "ECE232",
-    "ECE350", "ECE446", "ECE447", "ECE511", "SWE432", "SWE437", "SWE443", "SYST371", "SYST470", "PHIL371", "PHIL376", "ENGH388", "CS332", "CS351"];
     var csSeniorList = shuffle(["CS455", "CS468", "CS475", "CS425", "CS440", "CS450", "CS451", "CS455",
     "CS463", "CS465", "CS468", "CS469", "CS475", "CS477", "CS480", "CS482", "CS484", "CS485",
     "CS490", "CS491", "CS499", "MATH446", "OR481"]);
@@ -29,33 +28,41 @@ export function generateSchedule(coursesTaken, creditsPreferred) {
         var ct2 = 0;
         // array containing next semester's classes
         while(creditsPreferred > creditsInSemester){
+
             /* adds a mason core to the schedule*/
             var c; //count
-
+            //loops through mason core list
             for (c in mason_core) {
+                // if the class is in the schedule then ignore it
                 if (coursesTaken.includes(mason_core[c]) && !nextSemesterClasses.includes(mason_core[c])) {
 
                 }
+                // otherwise add it to next semester's classes
                 else {
                     nextSemesterClasses.push(mason_core[c]);
                     mason_core.shift();
                     break;
                 }
             }
+            // if next semester's credits is more than the preferred, then break out of the loop
             if(creditsPreferred < getSemesterCredits(nextSemesterClasses)){
                 creditsInSemester = getSemesterCredits(nextSemesterClasses);
                 break;
             }
+            // loops through communications list
             for (c in communication) {
+                // if class is in the schedule then ignore it
                 if (coursesTaken.includes(communication[c]) && !nextSemesterClasses.includes(communication[c])) {
 
                 }
+                // otherwise add it to next semester's classes
                 else {
                     nextSemesterClasses.push(communication[c]);
                     communication.shift();
                     break;
                 }
             }
+            // if next semester's credits is more than the preferred, then break out of the loop
             if(creditsPreferred < getSemesterCredits(nextSemesterClasses)){
                 creditsInSemester = getSemesterCredits(nextSemesterClasses);
                 break;
@@ -70,6 +77,7 @@ export function generateSchedule(coursesTaken, creditsPreferred) {
                     break;
                 }
             }
+            // if next semester's credits is more than the preferred, then break out of the loop
             if(creditsPreferred < getSemesterCredits(nextSemesterClasses)){
                 creditsInSemester = getSemesterCredits(nextSemesterClasses);
                 break;
@@ -85,15 +93,17 @@ export function generateSchedule(coursesTaken, creditsPreferred) {
                     scienceClassesTaken++;
                 }
             }
-            // Considering that the student has taken three science classes, they do not need to take anymore classes.
+            // loops through the science classes
             scienceList.forEach(scienceClass => {
                 if(scienceLoopStop){
                     return;
                 }
+                // if the student has taken two or more science courses fromt the list then they will fulfill degree requirements
                 else if (scienceClassesTaken >= 2) {
                     scienceLoopStop = true;
                     return;
                 }
+                // this section will add the sequential science courses with labs
                 else if (coursesTaken.includes("BIOL103") && !coursesTaken.includes("BIOL106") && !scienceLoopStop) {
                     nextSemesterClasses.push("BIOL106");
                     nextSemesterClasses.push("BIOL107");
@@ -118,6 +128,7 @@ export function generateSchedule(coursesTaken, creditsPreferred) {
                     scienceLoopStop = true;
                     return;
                 }
+                // if the student hasn't taken any science courses, then add one to the schedule with associated lab
                 else if (hasPreReqs(coursesTaken, scienceClass) && !coursesTaken.includes(scienceClass) && !scienceLoopStop) {
                     nextSemesterClasses.push(scienceClass);
                     if (scienceClass == "CHEM211") {
@@ -135,6 +146,7 @@ export function generateSchedule(coursesTaken, creditsPreferred) {
                     return;
                 }
             });
+            // if next semester's credits is more than the preferred, then break out of the loop
             if(creditsPreferred < getSemesterCredits(nextSemesterClasses)){
                 creditsInSemester = getSemesterCredits(nextSemesterClasses);
                 break;
@@ -149,13 +161,12 @@ export function generateSchedule(coursesTaken, creditsPreferred) {
                     csCoreCredits += getCredits(csCoreList2[i]);
                 }
             }
-
             // Stop the loop if the student has taken 35 credits
             csCoreList.forEach(csClass => {
                 if (csCoreCredits >= 35) {
                     csCoreLoop = true;
                 }
-
+                // if the student has the prerequisites and hasnt taken the class, add a cs core class to next semester
                 if (hasPreReqs(coursesTaken, csClass) && !coursesTaken.includes(csClass) && !csCoreLoop && !nextSemesterClasses.includes(csClass)) {
                     nextSemesterClasses.push(csClass);
                     csCoreList.shift();
@@ -163,6 +174,7 @@ export function generateSchedule(coursesTaken, creditsPreferred) {
                     return;
                 }
             });
+            // if next semester's credits is more than the preferred, then break out of the loop
             if(creditsPreferred < getSemesterCredits(nextSemesterClasses)){
                 creditsInSemester = getSemesterCredits(nextSemesterClasses);
                 break;
@@ -178,6 +190,7 @@ export function generateSchedule(coursesTaken, creditsPreferred) {
                 }
             }
             )
+            // if next semester's credits is more than the preferred, then break out of the loop
             if(creditsPreferred < getSemesterCredits(nextSemesterClasses)){
                 creditsInSemester = getSemesterCredits(nextSemesterClasses);
                 break;
@@ -186,18 +199,20 @@ export function generateSchedule(coursesTaken, creditsPreferred) {
             /* adds a senior level cs class to the schedule*/
             var csSeniorLoopStop = false;
             var csSeniorCredits = 0;
-
+            // this will count up the seniorcs credits, if you have enough then there is no need to add another senior cs class
             for (var i = 0; i < csSeniorList.length; i++) {
                 // Keep track of credits taken
                 if (coursesTaken.includes(csSeniorList[i])) {
                     csSeniorCredits += getCredits(csSeniorList[i]);
                 }
             }
-
+            // iterates through the senior cs class list
             csSeniorList.forEach(csClass => {
+                // if you have enough credits then stop the loop
                 if (csSeniorCredits >= 15) {
                     csSeniorLoopStop = true;
                 }
+                // this ensures that CS455, CS468, or CS475 gets added to your schedule as it is a degree requirement
                 if ((!coursesTaken.includes("CS455") && hasPreReqs(coursesTaken,"CS455") && !coursesTaken.includes("CS468") && hasPreReqs(coursesTaken, "CS468") && !coursesTaken.includes("CS475") && hasPreReqs(coursesTaken, "CS475")) && !csSeniorLoopStop
                 && !nextSemesterClasses.includes("CS455") && !nextSemesterClasses.includes("CS468") && !nextSemesterClasses.includes("CS475")) {
                     var csSeniorMustIncludes = ["CS455", "CS468", "CS475"];
@@ -207,7 +222,7 @@ export function generateSchedule(coursesTaken, creditsPreferred) {
                     csSeniorLoopStop = true;
                     return;
                 }
-
+                // this will add a senior cs class to next semester if you haven't taken it yet and you have the requirements to take it
                 if (!coursesTaken.includes(csClass) && !csSeniorLoopStop && (csClass != "CS455" || csClass != "CS475" || csClass != "CS468") && hasPreReqs(coursesTaken, csClass)
                 && !nextSemesterClasses.includes(csClass)){
                     nextSemesterClasses.push(csClass);
@@ -216,21 +231,31 @@ export function generateSchedule(coursesTaken, creditsPreferred) {
                     return;
                 }
             });
+
+            // this will ensure that there are not any duplicates in the next semester by turning the array into a set and back into an array
+            nextSemesterClasses = [...new Set(nextSemesterClasses)];
+
+            // if next semester's credits is more than the preferred, then break out of the loop
             if(creditsPreferred < getSemesterCredits(nextSemesterClasses)){
                 creditsInSemester = getSemesterCredits(nextSemesterClasses);
                 break;
             }
+            // updates credits variable to break out of loop
             creditsInSemester = getSemesterCredits(nextSemesterClasses);
-            //console.log(creditsInSemester);
+            // updates counter to ensure generation stops
             ct2++;
         }
+
+
+
+
         // adds next semester to courses taken and then resets nextsemester list so we can generate the next semester
         semestersUntilGraduation.push(nextSemesterClasses);
         coursesTaken = coursesTaken.concat(nextSemesterClasses);
         nextSemesterClasses = [];
+        // updates counter to ensure we break out of the loop, this is only as a failsafe
         ct++;
     }
-    console.log(semestersUntilGraduation);
     return semestersUntilGraduation;
 }
 

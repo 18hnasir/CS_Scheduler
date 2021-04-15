@@ -75,7 +75,7 @@ if(check1 < 30 && check1 > 20){
     numPassed++;
 }
 
-console.log("Expected: true Actual: "  + (check1));
+console.log("Expected: true Actual: "  + (check1 < 30 && check1 > 20));
 
 console.log("---------------------------------------------------------------------------------------------------------------");
 console.log("Test 4");
