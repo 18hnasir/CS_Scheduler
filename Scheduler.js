@@ -1,6 +1,8 @@
 import { getPreReq } from './courseInfo.js';
 import { getCredits } from './courseInfo.js';
 
+
+//generateSchedule([], 15);
 // you can use this array to test the schedule generation with different classes taken
 export function generateSchedule(coursesTaken, creditsPreferred) {
 
@@ -9,12 +11,16 @@ export function generateSchedule(coursesTaken, creditsPreferred) {
     
     // list of courses organized by category
     var csCoreList = ["CS110", "CS112", "CS211", "CS262", "CS306", "CS310", "CS321", "CS330", "CS367", "CS471", "CS483"];
+    var csCoreList2 = ["CS110", "CS112", "CS211", "CS262", "CS306", "CS310", "CS321", "CS330", "CS367", "CS471", "CS483"];
     var mason_core = shuffle(["Written Communication", "Literature", "Arts", "Western Civilization/World History", "Social and Behavioral Science", "Global Understanding"]);
     var communication = ["ENGH101", "COMM100", "ENGH302"];
     var math = ["MATH113", "MATH114", "MATH125", "MATH203", "MATH203", "MATH213", "STAT344"];
     var scienceList = shuffle(["BIOL103", "CHEM211","GEOL101", "PHYS160"]);
+    var scienceList2 = ["BIOL103", "CHEM211","GEOL101", "PHYS160"];
     var csRelatedList = shuffle(["STAT354", "OR335", "OR441", "OR442", "ECE301", "ECE331", "ECE231", "ECE332", "ECE232",
     "ECE350", "ECE446", "ECE447", "ECE511", "SWE432", "SWE437", "SWE443", "SYST371", "SYST470", "PHIL371", "PHIL376", "ENGH388", "CS332", "CS351"]);
+    var csRelatedList2 = ["STAT354", "OR335", "OR441", "OR442", "ECE301", "ECE331", "ECE231", "ECE332", "ECE232",
+    "ECE350", "ECE446", "ECE447", "ECE511", "SWE432", "SWE437", "SWE443", "SYST371", "SYST470", "PHIL371", "PHIL376", "ENGH388", "CS332", "CS351"];
     var csSeniorList = ["CS455", "CS468", "CS475", "CS425", "CS440", "CS450", "CS451", "CS455",
     "CS463", "CS465", "CS468", "CS469", "CS475", "CS477", "CS480", "CS482", "CS484", "CS485",
     "CS490", "CS491", "CS499", "MATH446", "OR481"];
@@ -74,8 +80,8 @@ export function generateSchedule(coursesTaken, creditsPreferred) {
             var scienceClassesTaken = 0;
 
             // Checks courses already taken and if it is in scienceList increment scienceClassesTaken.
-            for (var i = 0; i < scienceList.length; i++) {
-                if (coursesTaken.includes(scienceList[i])) {
+            for (var i = 0; i < scienceList2.length; i++) {
+                if (coursesTaken.includes(scienceList2[i])) {
                     scienceClassesTaken++;
                 }
             }
@@ -84,7 +90,7 @@ export function generateSchedule(coursesTaken, creditsPreferred) {
                 if(scienceLoopStop){
                     return;
                 }
-                if (scienceClassesTaken == 3) {
+                else if (scienceClassesTaken >= 2) {
                     scienceLoopStop = true;
                     return;
                 }
@@ -138,9 +144,9 @@ export function generateSchedule(coursesTaken, creditsPreferred) {
             var csCoreCredits = 0;
 
             // Keep track of the amount of credits the student takes for cs core classes
-            for (var i = 0; i < csCoreList.length; i++) {
-                if (coursesTaken.includes(csCoreList[i])) {
-                    csCoreCredits += getCredits(csCoreList[i]);
+            for (var i = 0; i < csCoreList2.length; i++) {
+                if (coursesTaken.includes(csCoreList2[i])) {
+                    csCoreCredits += getCredits(csCoreList2[i]);
                 }
             }
 
@@ -164,9 +170,9 @@ export function generateSchedule(coursesTaken, creditsPreferred) {
             // adds a cs related course to next semester's schedule
             var csLoopStop = false;
             var csRelatedCredits = 0;
-            for (var i = 0; i < csRelatedList.length; i++) {
-                if (coursesTaken.includes(csRelatedList[i])) {
-                    csRelatedCredits += getCredits(csRelatedList[i]);
+            for (var i = 0; i < csRelatedList2.length; i++) {
+                if (coursesTaken.includes(csRelatedList2[i])) {
+                    csRelatedCredits += getCredits(csRelatedList2[i]);
                 }
             }
             csRelatedList.forEach(csClass => {
@@ -245,14 +251,44 @@ export function hasPreReqs(coursesTaken, class1) {
     });
     return canTake;
 }
-// returns true or false depending on whether the user has met all user requirements
+// returns true or false depending on whether the user has met all graduation requirements
 export function meetsRequirements(coursesTaken){
+    var core = ["CS110", "CS112", "CS211", "CS262", "CS306", "CS310", "CS321", "CS330", "CS367", "CS471", "CS483"];
     if(getSemesterCredits(coursesTaken) < 120){
         return false;
     }
-    else{
-        return true;
+    /*console.log(getSemesterCredits(coursesTaken));
+    for(var i=0;i<core.length;i++){
+        console.log(coursesTaken);
+        console.log(core[i].valueOf());
+        if(!coursesTaken.includes(core[i].valueOf())){
+            return false;
+        }    
     }
+    /*var maths = ["MATH113", "MATH114", "MATH125", "MATH203", "MATH203", "MATH213", "STAT344"];
+    for(var i=0;i<maths.length;i++){
+        if(!coursesTaken.includes(maths[i])){
+            return false;
+        }    
+    }
+    var sciencesList = ["BIOL103", "CHEM211","GEOL101", "PHYS160"];
+    var scienceClasses = 0;
+    for (var i = 0; i < sciencesList.length; i++) {
+        if (coursesTaken.includes(sciencesList[i])) {
+            scienceClasses++;
+        }
+    }
+    if(scienceClasses < 2){
+        return false;
+    }
+    var mCore = ["Written Communication", "Literature", "Arts", "Western Civilization/World History", "Social and Behavioral Science", "Global Understanding"];
+    for(var i=0;i<mCore.length;i++){
+        if(!coursesTaken.includes(mCore[i])){
+            return false;
+        }    
+    }*/
+    return true;
+    
 }
 
 // function that returns the number of credits in a semester
