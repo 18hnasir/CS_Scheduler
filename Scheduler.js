@@ -1,11 +1,6 @@
 import { getPreReq } from './courseInfo.js';
 import { getCredits } from './courseInfo.js';
 
-var test = ["CS110", "MATH113", "Arts", "STAT354", "CS440"];
-test = [];
-for(var x=0;x<10;x++){
-    generateSchedule(test, 15);
-}
 // you can use this array to test the schedule generation with different classes taken
 export function generateSchedule(coursesTaken, creditsPreferred) {
 
@@ -38,7 +33,7 @@ export function generateSchedule(coursesTaken, creditsPreferred) {
             var c; //count
 
             for (c in mason_core) {
-                if (coursesTaken.includes(mason_core[c])) {
+                if (coursesTaken.includes(mason_core[c]) && !nextSemesterClasses.includes(mason_core[c])) {
 
                 }
                 else {
@@ -52,7 +47,7 @@ export function generateSchedule(coursesTaken, creditsPreferred) {
                 break;
             }
             for (c in communication) {
-                if (coursesTaken.includes(communication[c])) {
+                if (coursesTaken.includes(communication[c]) && !nextSemesterClasses.includes(communication[c])) {
 
                 }
                 else {
@@ -66,7 +61,7 @@ export function generateSchedule(coursesTaken, creditsPreferred) {
                 break;
             }
             for (c in math) {
-                if (coursesTaken.includes(math[c])) {
+                if (coursesTaken.includes(math[c]) && !nextSemesterClasses.includes(math[c])) {
 
                 }
                 else {
