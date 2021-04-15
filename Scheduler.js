@@ -1,8 +1,11 @@
 import { getPreReq } from './courseInfo.js';
 import { getCredits } from './courseInfo.js';
 
-
-//generateSchedule([], 15);
+var test = ["CS110", "MATH113", "Arts", "STAT354", "CS440"];
+test = [];
+for(var x=0;x<10;x++){
+    generateSchedule(test, 15);
+}
 // you can use this array to test the schedule generation with different classes taken
 export function generateSchedule(coursesTaken, creditsPreferred) {
 
@@ -15,18 +18,20 @@ export function generateSchedule(coursesTaken, creditsPreferred) {
     var mason_core = shuffle(["WrittenCommunication", "Literature", "Arts", "WesternCivilizationWorldHistory", "SocialandBehavioralSciences", "GlobalUnderstanding"]);
     var communication = ["ENGH101", "COMM100", "ENGH302"];
     var math = ["MATH113", "MATH114", "MATH125", "MATH203", "MATH203", "MATH213", "STAT344"];
-    var scienceList = ["BIOL103", "CHEM211","GEOL101", "PHYS160"];
+    var scienceList = shuffle(["BIOL103", "CHEM211","GEOL101", "PHYS160"]);
     var scienceList2 = ["BIOL103", "CHEM211","GEOL101", "PHYS160"];
-    var csRelatedList = ["STAT354", "OR335", "OR441", "OR442", "ECE301", "ECE331", "ECE231", "ECE332", "ECE232",
-    "ECE350", "ECE446", "ECE447", "ECE511", "SWE432", "SWE437", "SWE443", "SYST371", "SYST470", "PHIL371", "PHIL376", "ENGH388", "CS332", "CS351"];
+    var csRelatedList = shuffle(["STAT354", "OR335", "OR441", "OR442", "ECE301", "ECE331", "ECE231", "ECE332", "ECE232",
+    "ECE350", "ECE446", "ECE447", "ECE511", "SWE432", "SWE437", "SWE443", "SYST371", "SYST470", "PHIL371", "PHIL376", "ENGH388", "CS332", "CS351"]);
     var csRelatedList2 = ["STAT354", "OR335", "OR441", "OR442", "ECE301", "ECE331", "ECE231", "ECE332", "ECE232",
     "ECE350", "ECE446", "ECE447", "ECE511", "SWE432", "SWE437", "SWE443", "SYST371", "SYST470", "PHIL371", "PHIL376", "ENGH388", "CS332", "CS351"];
-    var csSeniorList = ["CS455", "CS468", "CS475", "CS425", "CS440", "CS450", "CS451", "CS455",
+    var csSeniorList = shuffle(["CS455", "CS468", "CS475", "CS425", "CS440", "CS450", "CS451", "CS455",
     "CS463", "CS465", "CS468", "CS469", "CS475", "CS477", "CS480", "CS482", "CS484", "CS485",
-    "CS490", "CS491", "CS499", "MATH446", "OR481"];
-
-    while(!meetsRequirements(coursesTaken)){
+    "CS490", "CS491", "CS499", "MATH446", "OR481"]);
+    // adds counter to ensure generation stops
+    var ct = 0;
+    while(!meetsRequirements(coursesTaken) && ct < 11){
         var creditsInSemester = 0;
+        var ct2 = 0;
         // array containing next semester's classes
         while(creditsPreferred > creditsInSemester){
             /* adds a mason core to the schedule*/
@@ -169,17 +174,8 @@ export function generateSchedule(coursesTaken, creditsPreferred) {
             }
             // adds a cs related course to next semester's schedule
             var csLoopStop = false;
-            var csRelatedCredits = 0;
-            for (var i = 0; i < csRelatedList2.length; i++) {
-                if (coursesTaken.includes(csRelatedList2[i])) {
-                    csRelatedCredits += getCredits(csRelatedList2[i]);
-                }
-            }
             csRelatedList.forEach(csClass => {
-                if (csRelatedCredits >= 6) {
-                    csLoopStop = true;
-                }
-                if (hasPreReqs(coursesTaken, csClass) && !coursesTaken.includes(csClass) && !csLoopStop) {
+                if (hasPreReqs(coursesTaken, csClass) && !coursesTaken.includes(csClass) && !csLoopStop && !nextSemesterClasses.includes(csClass)) {
                     nextSemesterClasses.push(csClass);
                     csRelatedList.shift();
                     csLoopStop = true;
@@ -230,11 +226,14 @@ export function generateSchedule(coursesTaken, creditsPreferred) {
                 break;
             }
             creditsInSemester = getSemesterCredits(nextSemesterClasses);
+            //console.log(creditsInSemester);
+            ct2++;
         }
         // adds next semester to courses taken and then resets nextsemester list so we can generate the next semester
         semestersUntilGraduation.push(nextSemesterClasses);
         coursesTaken = coursesTaken.concat(nextSemesterClasses);
         nextSemesterClasses = [];
+        ct++;
     }
     console.log(semestersUntilGraduation);
     return semestersUntilGraduation;
@@ -252,42 +251,11 @@ export function hasPreReqs(coursesTaken, class1) {
     });
     return canTake;
 }
-// returns true or false depending on whether the user has met all graduation requirements
+// returns true or false depending on whether the user has met credit requirements
 export function meetsRequirements(coursesTaken){
-    var core = ["CS110", "CS112", "CS211", "CS262", "CS306", "CS310", "CS321", "CS330", "CS367", "CS471", "CS483"];
     if(getSemesterCredits(coursesTaken) < 120){
         return false;
     }
-    /*console.log(getSemesterCredits(coursesTaken));
-    for(var i=0;i<core.length;i++){
-        console.log(coursesTaken);
-        console.log(core[i].valueOf());
-        if(!coursesTaken.includes(core[i].valueOf())){
-            return false;
-        }    
-    }
-    /*var maths = ["MATH113", "MATH114", "MATH125", "MATH203", "MATH203", "MATH213", "STAT344"];
-    for(var i=0;i<maths.length;i++){
-        if(!coursesTaken.includes(maths[i])){
-            return false;
-        }    
-    }
-    var sciencesList = ["BIOL103", "CHEM211","GEOL101", "PHYS160"];
-    var scienceClasses = 0;
-    for (var i = 0; i < sciencesList.length; i++) {
-        if (coursesTaken.includes(sciencesList[i])) {
-            scienceClasses++;
-        }
-    }
-    if(scienceClasses < 2){
-        return false;
-    }
-    var mCore = ["Written Communication", "Literature", "Arts", "Western Civilization/World History", "Social and Behavioral Science", "Global Understanding"];
-    for(var i=0;i<mCore.length;i++){
-        if(!coursesTaken.includes(mCore[i])){
-            return false;
-        }    
-    }*/
     return true;
     
 }
