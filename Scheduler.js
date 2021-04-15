@@ -1,5 +1,6 @@
 import { getPreReq } from './courseInfo.js';
 import { getCredits } from './courseInfo.js';
+import { getMustInclude } from './displaydata.js'
 
 // you can use this array to test the schedule generation with different classes taken
 export function generateSchedule(coursesTaken, creditsPreferred) {
@@ -21,6 +22,7 @@ export function generateSchedule(coursesTaken, creditsPreferred) {
     var csSeniorList = shuffle(["CS455", "CS468", "CS475", "CS425", "CS440", "CS450", "CS451", "CS455",
     "CS463", "CS465", "CS468", "CS469", "CS475", "CS477", "CS480", "CS482", "CS484", "CS485",
     "CS490", "CS491", "CS499", "MATH446", "OR481"]);
+    var include = getMustInclude();
     // adds counter to ensure generation stops
     var ct = 0;
     while(!meetsRequirements(coursesTaken) && ct < 11){

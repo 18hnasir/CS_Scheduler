@@ -139,3 +139,7 @@ function getMustInclude() {
   return finalMustInclude;
 }
 
+function downloadPDF(){
+  const element = document.getElementById("download");
+  html2pdf().from(element).save();
+}
