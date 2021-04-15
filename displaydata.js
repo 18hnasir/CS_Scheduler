@@ -1,4 +1,5 @@
 import { getSemesterCost } from './Scheduler.js';
+import { generateSchedule } from './Scheduler.js';
 import { getCredits } from './courseInfo.js';
 import { graduationDate } from './Scheduler.js';
 import { getInput } from './InputController.js';
