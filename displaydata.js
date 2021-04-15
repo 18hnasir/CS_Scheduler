@@ -1,6 +1,9 @@
 import { getSemesterCost } from './Scheduler.js';
+import { generateSchedule } from './Scheduler.js';
 import { getCredits } from './courseInfo.js';
 import { graduationDate } from './Scheduler.js';
+import { shuffle } from './Scheduler.js';
+//import { getInput } from './InputController.js';
 
 window.onload = function() {
   var generateButton = document.getElementById("generate");
@@ -112,3 +115,4 @@ function getInput() {
 
   return coursesTaken;
 }
+
