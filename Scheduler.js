@@ -12,7 +12,7 @@ export function generateSchedule(coursesTaken, creditsPreferred) {
     // list of courses organized by category
     var csCoreList = ["CS110", "CS112", "CS211", "CS262", "CS306", "CS310", "CS321", "CS330", "CS367", "CS471", "CS483"];
     var csCoreList2 = ["CS110", "CS112", "CS211", "CS262", "CS306", "CS310", "CS321", "CS330", "CS367", "CS471", "CS483"];
-    var mason_core = shuffle(["WrittenCommunication", "Literature", "Arts", "WesternCivilizationWorld History", "SocialandBehavioralSciences", "GlobalUnderstanding"]);
+    var mason_core = shuffle(["WrittenCommunication", "Literature", "Arts", "WesternCivilizationWorldHistory", "SocialandBehavioralSciences", "GlobalUnderstanding"]);
     var communication = ["ENGH101", "COMM100", "ENGH302"];
     var math = ["MATH113", "MATH114", "MATH125", "MATH203", "MATH203", "MATH213", "STAT344"];
     var scienceList = shuffle(["BIOL103", "CHEM211","GEOL101", "PHYS160"]);
