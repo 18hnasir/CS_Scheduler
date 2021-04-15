@@ -3,7 +3,6 @@ import { generateSchedule } from './Scheduler.js';
 import { getCredits } from './courseInfo.js';
 import { graduationDate } from './Scheduler.js';
 import { shuffle } from './Scheduler.js';
-//import { getInput } from './InputController.js';
 
 window.onload = function() {
   var generateButton = document.getElementById("generate");
@@ -12,6 +11,9 @@ window.onload = function() {
 
 function displayData() {
   var creditsPreferred = document.getElementById("credits_preferred").value; //this is the user input for credits
+  if (creditsPreferred == "") { //sets default value for credits preferred if nothing is entered
+    creditsPreferred = 15; 
+  }
   var coursesTaken = getInput(); //gets the user input/classes already taken
   var courses = generateSchedule(coursesTaken, creditsPreferred); //gets the next semester classes to display
   var creditsPreferredBox = document.getElementById("inputGroup-sizing-default"); //get HTML element to hid once generate is clicked
