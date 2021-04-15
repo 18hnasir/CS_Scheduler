@@ -2,6 +2,11 @@ import { getSemesterCost } from './Scheduler.js';
 import { getCredits } from './courseInfo.js';
 import { graduationDate } from './Scheduler.js';
 
+window.onload = function() {
+  var generateButton = document.getElementById("generate");
+  generateButton.addEventListener("click", displayData);
+}
+
 function displayData() {
   var courses = [["CS112", "BIOL103", "BIOL106", "BIOL107"], ["CS321", "SWE443", "CS332", "CHEM211", "CHEM213"]]; //tester array
   var creditsPreferredBox = document.getElementById("inputGroup-sizing-default");
