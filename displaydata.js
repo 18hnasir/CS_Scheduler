@@ -51,6 +51,7 @@ function displayData() {
   document.getElementById("expected_graduation").innerHTML = graduationDate(courses);
 }
 
+//Function returns array of all checked inputs
 function getInput() {
   var csCoreList = ["CS110", "CS112", "CS211", "CS262", "CS306", "CS310", "CS321", "CS330", "CS367", "CS471", "CS483"];
   var mason_core = shuffle(["WrittenCommunication", "Literature", "Arts", "WesternCivilizationWorldHistory", "SocialandBehavioralSciences", "GlobalUnderstanding"]);
@@ -65,7 +66,8 @@ function getInput() {
   var coursesTaken = []; //going to add checked classes to here
 
   var i; //count
-
+  
+  //traverse each list to see if the checkbox was checked and into list
   for (i in csCoreList) {
     let cbox = document.getElementById(csCoreList[i]).checked; //going to get checkbox with class ID
     if (cbox == true) { //if that checkbox is checked
@@ -116,5 +118,24 @@ function getInput() {
   }
 
   return coursesTaken;
+}
+
+//function returns an array of classes that were checked in the must include section 
+function getMustInclude() {
+  var mustIncludeClassList = ["BIOL103mi", "CHEM211mi", "GEOL101mi", "PHYS160mi", "STAT354mi", "OR335mi", "OR441mi", "OR442mi", "SWE432mi", "SWE437mi", "SWE443mi", "ENGH388mi", "CS332mi", "CS351mi",
+        "CS455mi", "CS468mi", "CS475mi", "CS425mi", "CS440mi", "CS450mi", "CS451mi", "CS455mi",
+        "CS463mi", "CS465mi", "CS468mi", "CS469mi", "CS475mi", "CS477mi", "CS480mi", "CS482mi", "CS484mi", "CS485mi",
+        "CS490mi", "CS491mi", "CS499mi", "MATH446mi", "OR481mi"];
+  var finalMustInclude = [];
+  var i; //count
+
+  //tranverse thropugh list and see if the check box was checked and add into final list
+  for (i in mustIncludeClassList) {
+    let cbox = document.getElementById(mustIncludeClassList[i]).checked; //going to get checkbox with class ID
+    if (cbox == true) {
+      finalMustInclude.push(mustIncludeClassList[i].slice(0, -2));
+    }
+  }
+  return finalMustInclude;
 }
 
