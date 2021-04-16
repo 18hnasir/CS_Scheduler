@@ -11,8 +11,8 @@ window.onload = function() {
 
 function displayData() {
   var creditsPreferred = document.getElementById("credits_preferred").value; //this is the user input for credits
-  if (creditsPreferred == "") { //sets default value for credits preferred if nothing is entered
-    creditsPreferred = 15; 
+  if (creditsPreferred == "" || creditsPreferred < 12 || creditsPreferred > 18) { //sets default value for credits preferred if nothing is entered, if less than 12 or greater than 18
+    creditsPreferred = 15;
   }
   var coursesTaken = getInput(); //gets the user input/classes already taken
   var courses = generateSchedule(coursesTaken, creditsPreferred); //gets the next semester classes to display
