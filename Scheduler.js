@@ -1,6 +1,6 @@
 import { getPreReq } from './courseInfo.js';
 import { getCredits } from './courseInfo.js';
-import { getMustInclude } from './InputController.js'
+import { getMustInclude } from './displaydata.js'
 
 // you can use this array to test the schedule generation with different classes taken
 generateSchedule([], 15);
