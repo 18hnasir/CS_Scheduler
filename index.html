@@ -1,572 +1,580 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>GMU CS Scheduler</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
-    <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
-  </head>
-  <body>
-    <script type="module" src="displaydata.js"></script>
 
-    <section id="title">
-      <div class="container-fluid">
+<head>
+  <meta charset="utf-8">
+  <title>GMU CS Scheduler</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
 
-        <!-- Nav Bar -->
-        <nav class="navbar navbar-expand-lg">
-          <a class="navbar-brand" href="index.html">GMU Computer Science Scheduler</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="#footer">About</a>
-              </li>
-            </ul>
+</head>
+
+<body>
+  <!-- References displaydata.js which contains the function displaydata() -->
+  <script type="text/javascript" src="allfunctions.js"></script>
+
+  <!-- This section includes the navigation bar with our title -->
+  <section id="title">
+    <div class="container-fluid">
+
+      <!-- Nav Bar -->
+      <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="index.html">GMU Computer Science Scheduler</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">About</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+  </section>
+
+  <!-- This section is our checkbox form, contains all checkboxes of the classes and their unique ID -->
+  <section id="checkbox_form">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <h5>Computer Science Core</h5>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CS110" value="">
+            <label class="form-check-label" for="">CS 110</label>
           </div>
-        </nav>
-    </section>
-
-    <section id="checkbox_form">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col">
-            <h5>Computer Science Core</h5>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CS110" value="">
-              <label class="form-check-label" for="">CS 110</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CS112" value="">
-              <label class="form-check-label" for="">CS 112</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CS211" value="">
-              <label class="form-check-label" for="">CS 211</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CS262" value="">
-              <label class="form-check-label" for="">CS 262</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CS306" value="">
-              <label class="form-check-label" for="">CS 306</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CS310" value="">
-              <label class="form-check-label" for="">CS 310</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CS321" value="">
-              <label class="form-check-label" for="">CS 321</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CS330" value="">
-              <label class="form-check-label" for="">CS 330</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CS367" value="">
-              <label class="form-check-label" for="">CS 367</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CS471" value="">
-              <label class="form-check-label" for="">CS 471</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CS483" value="">
-              <label class="form-check-label" for="">CS 483</label>
-            </div>
-
-            <br>
-            <br>
-
-            <h5>Mason Core</h5>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="WrittenCommunication" value="">
-              <label class="form-check-label" for="">Written Communication</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="Literature" value="">
-              <label class="form-check-label" for="">Literature</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="Arts" value="">
-              <label class="form-check-label" for="">Arts</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="WesternCivilizationWorldHistory" value="">
-              <label class="form-check-label" for="">Western Civilization/World History</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="SocialandBehavioralSciences" value="">
-              <label class="form-check-label" for="">Social and Behavioral Sciences</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="GlobalUnderstanding" value="">
-              <label class="form-check-label" for="">Global Understanding</label>
-            </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CS112" value="">
+            <label class="form-check-label" for="">CS 112</label>
           </div>
-          <div class="col">
-            <h5>Senior Computer Science</h5>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CS425" value="">
-              <label class="form-check-label" for="">CS 425</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CS440" value="">
-              <label class="form-check-label" for="">CS 440</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CS450" value="">
-              <label class="form-check-label" for="">CS 450</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CS451" value="">
-              <label class="form-check-label" for="">CS 451</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CS455" value="">
-              <label class="form-check-label" for="">CS 455</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CS463" value="">
-              <label class="form-check-label" for="">CS 463</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CS465" value="">
-              <label class="form-check-label" for="">CS 465</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CS468" value="">
-              <label class="form-check-label" for="">CS 468</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CS469" value="">
-              <label class="form-check-label" for="">CS 469</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CS475" value="">
-              <label class="form-check-label" for="">CS 475</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CS477" value="">
-              <label class="form-check-label" for="">CS 477</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CS480" value="">
-              <label class="form-check-label" for="">CS 480</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CS482" value="">
-              <label class="form-check-label" for="">CS 482</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CS484" value="">
-              <label class="form-check-label" for="">CS 484</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CS485" value="">
-              <label class="form-check-label" for="">CS 485</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CS490" value="">
-              <label class="form-check-label" for="">CS 490</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CS491" value="">
-              <label class="form-check-label" for="">CS 491</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CS499" value="">
-              <label class="form-check-label" for="">CS 499</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="MATH446" value="">
-              <label class="form-check-label" for="">MATH 446</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="OR481" value="">
-              <label class="form-check-label" for="">OR 481</label>
-            </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CS211" value="">
+            <label class="form-check-label" for="">CS 211</label>
           </div>
-          <div class="col">
-            <h5>Mathematics</h5>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="MATH113" value="">
-              <label class="form-check-label" for="">MATH 113</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="MATH114" value="">
-              <label class="form-check-label" for="">MATH 114</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="MATH125" value="">
-              <label class="form-check-label" for="">MATH 125</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="MATH203" value="">
-              <label class="form-check-label" for="">MATH 203</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="MATH213" value="">
-              <label class="form-check-label" for="">MATH 213</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="STAT344" value="">
-              <label class="form-check-label" for="">STAT 344</label>
-            </div>
-
-            <br>
-            <br>
-
-            <h5>Natural Science</h5>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="BIOL103" value="">
-              <label class="form-check-label" for="">BIOL 103</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="BIOL107" value="">
-              <label class="form-check-label" for="">BIOL 107</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CHEM211" value="">
-              <label class="form-check-label" for="">CHEM 211</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CHEM212" value="">
-              <label class="form-check-label" for="">CHEM 212</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="GEOL101" value="">
-              <label class="form-check-label" for="">GEOL 101</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="GEOL102" value="">
-              <label class="form-check-label" for="">GEOL 102</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="PHYS160" value="">
-              <label class="form-check-label" for="">PHYS 160</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="PHYS260" value="">
-              <label class="form-check-label" for="">PHYS 260</label>
-            </div>
-
-            <br>
-            <br>
-
-            <h5>Communication and English</h5>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="ENGH101" value="">
-              <label class="form-check-label" for="">ENGH 101</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="COMM100" value="">
-              <label class="form-check-label" for="">COMM 100</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="COMM101" value="">
-              <label class="form-check-label" for="">COMM 101</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="ENGH302" value="">
-              <label class="form-check-label" for="">ENGH 302</label>
-            </div>
-
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CS262" value="">
+            <label class="form-check-label" for="">CS 262</label>
           </div>
-          <div class="col">
-            <h5>Computer Science Related Courses</h5>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CS332" value="">
-              <label class="form-check-label" for="">CS 332</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CS351" value="">
-              <label class="form-check-label" for="">CS 351</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="STAT354" value="">
-              <label class="form-check-label" for="">STAT 354</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="OR335" value="">
-              <label class="form-check-label" for="">OR 335</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="OR441" value="">
-              <label class="form-check-label" for="">OR 441</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="OR442" value="">
-              <label class="form-check-label" for="">OR 442</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="ECE231" value="">
-              <label class="form-check-label" for="">ECE 231</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="ECE232" value="">
-              <label class="form-check-label" for="">ECE 232</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="ECE301" value="">
-              <label class="form-check-label" for="">ECE 301</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="ECE331" value="">
-              <label class="form-check-label" for="">ECE 331</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="ECE332" value="">
-              <label class="form-check-label" for="">ECE 332</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="ECE350" value="">
-              <label class="form-check-label" for="">ECE 350</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="ECE446" value="">
-              <label class="form-check-label" for="">ECE 446</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="ECE447" value="">
-              <label class="form-check-label" for="">ECE 447</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="ECE511" value="">
-              <label class="form-check-label" for="">ECE 511</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="SWE432" value="">
-              <label class="form-check-label" for="">SWE 432</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="SWE437" value="">
-              <label class="form-check-label" for="">SWE 437</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="SWE443" value="">
-              <label class="form-check-label" for="">SWE 443</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="SYST371" value="">
-              <label class="form-check-label" for="">SYST 371</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="SYST470" value="">
-              <label class="form-check-label" for="">SYST 470</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="PHIL371" value="">
-              <label class="form-check-label" for="">PHIL 371</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="PHIL376" value="">
-              <label class="form-check-label" for="">PHIL 376</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="ENGH388" value="">
-              <label class="form-check-label" for="">ENGH 388</label>
-            </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CS306" value="">
+            <label class="form-check-label" for="">CS 306</label>
           </div>
-      </div>
-    </section>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CS310" value="">
+            <label class="form-check-label" for="">CS 310</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CS321" value="">
+            <label class="form-check-label" for="">CS 321</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CS330" value="">
+            <label class="form-check-label" for="">CS 330</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CS367" value="">
+            <label class="form-check-label" for="">CS 367</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CS471" value="">
+            <label class="form-check-label" for="">CS 471</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CS483" value="">
+            <label class="form-check-label" for="">CS 483</label>
+          </div>
 
-    <section id="generate_button">
-      <div class="container-fluid">
-        <div class="row">
-          <h5>Preferred Classes</h5>
-          <div class="col">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CS425mi" value="">
-              <label class="form-check-label" for="">CS 425</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CS440mi" value="">
-              <label class="form-check-label" for="">CS 440</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CS450mi" value="">
-              <label class="form-check-label" for="">CS 450</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CS451mi" value="">
-              <label class="form-check-label" for="">CS 451</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CS455mi" value="">
-              <label class="form-check-label" for="">CS 455</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CS463mi" value="">
-              <label class="form-check-label" for="">CS 463</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CS465mi" value="">
-              <label class="form-check-label" for="">CS 465</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CS468mi" value="">
-              <label class="form-check-label" for="">CS 468</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CS469mi" value="">
-              <label class="form-check-label" for="">CS 469</label>
-            </div>
-          </div>
-          <div class="col">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CS475mi" value="">
-              <label class="form-check-label" for="">CS 475</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CS477mi" value="">
-              <label class="form-check-label" for="">CS 477</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CS480mi" value="">
-              <label class="form-check-label" for="">CS 480</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CS482mi" value="">
-              <label class="form-check-label" for="">CS 482</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CS484mi" value="">
-              <label class="form-check-label" for="">CS 484</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CS485mi" value="">
-              <label class="form-check-label" for="">CS 485</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CS490mi" value="">
-              <label class="form-check-label" for="">CS 490</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CS491mi" value="">
-              <label class="form-check-label" for="">CS 491</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CS499mi" value="">
-              <label class="form-check-label" for="">CS 499</label>
-            </div>
-          </div>
-          <div class="col">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="MATH446mi" value="">
-              <label class="form-check-label" for="">MATH 446</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="OR481mi" value="">
-              <label class="form-check-label" for="">OR 481</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="BIOL103mi" value="">
-              <label class="form-check-label" for="">BIOL 103</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="BIOL107mi" value="">
-              <label class="form-check-label" for="">BIOL 107</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CHEM211mi" value="">
-              <label class="form-check-label" for="">CHEM 211</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CHEM212mi" value="">
-              <label class="form-check-label" for="">CHEM 212</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="GEOL101mi" value="">
-              <label class="form-check-label" for="">GEOL 101</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="GEOL102mi" value="">
-              <label class="form-check-label" for="">GEOL 102</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="PHYS160mi" value="">
-              <label class="form-check-label" for="">PHYS 160</label>
-            </div>
-          </div>
-          <div class="col">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="PHYS260mi" value="">
-              <label class="form-check-label" for="">PHYS 260</label>
-            </div>
+          <br>
+          <br>
 
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CS332mi" value="">
-              <label class="form-check-label" for="">CS 332</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="CS351mi" value="">
-              <label class="form-check-label" for="">CS 351</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="STAT354mi" value="">
-              <label class="form-check-label" for="">STAT 354</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="OR335mi" value="">
-              <label class="form-check-label" for="">OR 335</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="OR441mi" value="">
-              <label class="form-check-label" for="">OR 441</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="OR442mi" value="">
-              <label class="form-check-label" for="">OR 442</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="SWE432mi" value="">
-              <label class="form-check-label" for="">SWE 432</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="SWE437mi" value="">
-              <label class="form-check-label" for="">SWE 437</label>
-            </div>
+          <h5>Mason Core</h5>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="WrittenCommunication" value="">
+            <label class="form-check-label" for="">Written Communication</label>
           </div>
-          <div class="col">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="SWE443mi" value="">
-              <label class="form-check-label" for="">SWE 443</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="ENGH388mi" value="">
-              <label class="form-check-label" for="">ENGH 388</label>
-            </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="Literature" value="">
+            <label class="form-check-label" for="">Literature</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="Arts" value="">
+            <label class="form-check-label" for="">Arts</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="WesternCivilizationWorldHistory" value="">
+            <label class="form-check-label" for="">Western Civilization/World History</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="SocialandBehavioralSciences" value="">
+            <label class="form-check-label" for="">Social and Behavioral Sciences</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="GlobalUnderstanding" value="">
+            <label class="form-check-label" for="">Global Understanding</label>
           </div>
         </div>
+        <div class="col">
+          <h5>Senior Computer Science</h5>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CS425" value="">
+            <label class="form-check-label" for="">CS 425</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CS440" value="">
+            <label class="form-check-label" for="">CS 440</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CS450" value="">
+            <label class="form-check-label" for="">CS 450</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CS451" value="">
+            <label class="form-check-label" for="">CS 451</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CS455" value="">
+            <label class="form-check-label" for="">CS 455</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CS463" value="">
+            <label class="form-check-label" for="">CS 463</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CS465" value="">
+            <label class="form-check-label" for="">CS 465</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CS468" value="">
+            <label class="form-check-label" for="">CS 468</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CS469" value="">
+            <label class="form-check-label" for="">CS 469</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CS475" value="">
+            <label class="form-check-label" for="">CS 475</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CS477" value="">
+            <label class="form-check-label" for="">CS 477</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CS480" value="">
+            <label class="form-check-label" for="">CS 480</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CS482" value="">
+            <label class="form-check-label" for="">CS 482</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CS484" value="">
+            <label class="form-check-label" for="">CS 484</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CS485" value="">
+            <label class="form-check-label" for="">CS 485</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CS490" value="">
+            <label class="form-check-label" for="">CS 490</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CS491" value="">
+            <label class="form-check-label" for="">CS 491</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CS499" value="">
+            <label class="form-check-label" for="">CS 499</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="MATH446" value="">
+            <label class="form-check-label" for="">MATH 446</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="OR481" value="">
+            <label class="form-check-label" for="">OR 481</label>
+          </div>
+        </div>
+        <div class="col">
+          <h5>Mathematics</h5>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="MATH113" value="">
+            <label class="form-check-label" for="">MATH 113</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="MATH114" value="">
+            <label class="form-check-label" for="">MATH 114</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="MATH125" value="">
+            <label class="form-check-label" for="">MATH 125</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="MATH203" value="">
+            <label class="form-check-label" for="">MATH 203</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="MATH213" value="">
+            <label class="form-check-label" for="">MATH 213</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="STAT344" value="">
+            <label class="form-check-label" for="">STAT 344</label>
+          </div>
 
+          <br>
+          <br>
+
+          <h5>Natural Science</h5>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="BIOL103" value="">
+            <label class="form-check-label" for="">BIOL 103</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="BIOL107" value="">
+            <label class="form-check-label" for="">BIOL 107</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CHEM211" value="">
+            <label class="form-check-label" for="">CHEM 211</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CHEM212" value="">
+            <label class="form-check-label" for="">CHEM 212</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="GEOL101" value="">
+            <label class="form-check-label" for="">GEOL 101</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="GEOL102" value="">
+            <label class="form-check-label" for="">GEOL 102</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="PHYS160" value="">
+            <label class="form-check-label" for="">PHYS 160</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="PHYS260" value="">
+            <label class="form-check-label" for="">PHYS 260</label>
+          </div>
+
+          <br>
+          <br>
+
+          <h5>Communication and English</h5>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="ENGH101" value="">
+            <label class="form-check-label" for="">ENGH 101</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="COMM100" value="">
+            <label class="form-check-label" for="">COMM 100</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="COMM101" value="">
+            <label class="form-check-label" for="">COMM 101</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="ENGH302" value="">
+            <label class="form-check-label" for="">ENGH 302</label>
+          </div>
+
+        </div>
+        <div class="col">
+          <h5>Computer Science Related Courses</h5>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CS332" value="">
+            <label class="form-check-label" for="">CS 332</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CS351" value="">
+            <label class="form-check-label" for="">CS 351</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="STAT354" value="">
+            <label class="form-check-label" for="">STAT 354</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="OR335" value="">
+            <label class="form-check-label" for="">OR 335</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="OR441" value="">
+            <label class="form-check-label" for="">OR 441</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="OR442" value="">
+            <label class="form-check-label" for="">OR 442</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="ECE231" value="">
+            <label class="form-check-label" for="">ECE 231</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="ECE232" value="">
+            <label class="form-check-label" for="">ECE 232</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="ECE301" value="">
+            <label class="form-check-label" for="">ECE 301</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="ECE331" value="">
+            <label class="form-check-label" for="">ECE 331</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="ECE332" value="">
+            <label class="form-check-label" for="">ECE 332</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="ECE350" value="">
+            <label class="form-check-label" for="">ECE 350</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="ECE446" value="">
+            <label class="form-check-label" for="">ECE 446</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="ECE447" value="">
+            <label class="form-check-label" for="">ECE 447</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="ECE511" value="">
+            <label class="form-check-label" for="">ECE 511</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="SWE432" value="">
+            <label class="form-check-label" for="">SWE 432</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="SWE437" value="">
+            <label class="form-check-label" for="">SWE 437</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="SWE443" value="">
+            <label class="form-check-label" for="">SWE 443</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="SYST371" value="">
+            <label class="form-check-label" for="">SYST 371</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="SYST470" value="">
+            <label class="form-check-label" for="">SYST 470</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="PHIL371" value="">
+            <label class="form-check-label" for="">PHIL 371</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="PHIL376" value="">
+            <label class="form-check-label" for="">PHIL 376</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="ENGH388" value="">
+            <label class="form-check-label" for="">ENGH 388</label>
+          </div>
+        </div>
+      </div>
+  </section>
+
+  <!-- This section includes our credits preferred input, must include class section, and generate button which calls displayData() -->
+  <section id="generate_button">
+    <div class="container-fluid">
+      <div class="row">
+        <h5>Must Include Classes</h5>
+        <div class="col">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CS425mi" value="">
+            <label class="form-check-label" for="">CS 425</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CS440mi" value="">
+            <label class="form-check-label" for="">CS 440</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CS450mi" value="">
+            <label class="form-check-label" for="">CS 450</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CS451mi" value="">
+            <label class="form-check-label" for="">CS 451</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CS455mi" value="">
+            <label class="form-check-label" for="">CS 455</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CS463mi" value="">
+            <label class="form-check-label" for="">CS 463</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CS465mi" value="">
+            <label class="form-check-label" for="">CS 465</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CS468mi" value="">
+            <label class="form-check-label" for="">CS 468</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CS469mi" value="">
+            <label class="form-check-label" for="">CS 469</label>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CS475mi" value="">
+            <label class="form-check-label" for="">CS 475</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CS477mi" value="">
+            <label class="form-check-label" for="">CS 477</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CS480mi" value="">
+            <label class="form-check-label" for="">CS 480</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CS482mi" value="">
+            <label class="form-check-label" for="">CS 482</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CS484mi" value="">
+            <label class="form-check-label" for="">CS 484</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CS485mi" value="">
+            <label class="form-check-label" for="">CS 485</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CS490mi" value="">
+            <label class="form-check-label" for="">CS 490</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CS491mi" value="">
+            <label class="form-check-label" for="">CS 491</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CS499mi" value="">
+            <label class="form-check-label" for="">CS 499</label>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="MATH446mi" value="">
+            <label class="form-check-label" for="">MATH 446</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="OR481mi" value="">
+            <label class="form-check-label" for="">OR 481</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="BIOL103mi" value="">
+            <label class="form-check-label" for="">BIOL 103</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="BIOL107mi" value="">
+            <label class="form-check-label" for="">BIOL 107</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CHEM211mi" value="">
+            <label class="form-check-label" for="">CHEM 211</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CHEM212mi" value="">
+            <label class="form-check-label" for="">CHEM 212</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="GEOL101mi" value="">
+            <label class="form-check-label" for="">GEOL 101</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="GEOL102mi" value="">
+            <label class="form-check-label" for="">GEOL 102</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="PHYS160mi" value="">
+            <label class="form-check-label" for="">PHYS 160</label>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="PHYS260mi" value="">
+            <label class="form-check-label" for="">PHYS 260</label>
+          </div>
+
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CS332mi" value="">
+            <label class="form-check-label" for="">CS 332</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="CS351mi" value="">
+            <label class="form-check-label" for="">CS 351</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="STAT354mi" value="">
+            <label class="form-check-label" for="">STAT 354</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="OR335mi" value="">
+            <label class="form-check-label" for="">OR 335</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="OR441mi" value="">
+            <label class="form-check-label" for="">OR 441</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="OR442mi" value="">
+            <label class="form-check-label" for="">OR 442</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="SWE432mi" value="">
+            <label class="form-check-label" for="">SWE 432</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="SWE437mi" value="">
+            <label class="form-check-label" for="">SWE 437</label>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="SWE443mi" value="">
+            <label class="form-check-label" for="">SWE 443</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="ENGH388mi" value="">
+            <label class="form-check-label" for="">ENGH 388</label>
+          </div>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="row">
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="inputGroup-sizing-default">Credits Preferred (12 - 18)</span>
+          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="credits_preferred">
+        </div>
+      </div>
+
+      <div class="row">
         <br>
-
-        <div class="row">
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="inputGroup-sizing-default">Credits Preferred</span>
-            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="credits_preferred">
-          </div>
-        </div>
-
-        <div class="row">
-          <br>
-          <br>
-          <br>
-          <button type="button" class="btn btn-success" id="generate">Generate</button>
-        </div>
+        <br>
+        <br>
+        <button type="button" class="btn btn-success" id="generate">Generate</button>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <br>
-    <br>
+  <br>
+  <br>
+
+  <!-- This section is where the schedule is disiplayed in 10 total tables -->
   <div id="download">
-    <section id="display_table_3">
+    <section id="display_table_4">
       <div class="container-fluid">
         <div class="row">
           <div class="col">
@@ -577,7 +585,7 @@
                   <th scope="col">Class</th>
                   <th scope="col">Credits</th>
                   <th scope="col">Cost</th>
-              </tr>
+                </tr>
               </thead>
               <tbody id="tbody1">
 
@@ -592,7 +600,7 @@
                   <th scope="col">Class</th>
                   <th scope="col">Credits</th>
                   <th scope="col">Cost</th>
-              </tr>
+                </tr>
               </thead>
               <tbody id="tbody2">
 
@@ -607,9 +615,24 @@
                   <th scope="col">Class</th>
                   <th scope="col">Credits</th>
                   <th scope="col">Cost</th>
-              </tr>
+                </tr>
               </thead>
               <tbody id="tbody3">
+
+              </tbody>
+            </table>
+          </div>
+          <div class="col">
+            <h6>-4-</h6>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Class</th>
+                  <th scope="col">Credits</th>
+                  <th scope="col">Cost</th>
+                </tr>
+              </thead>
+              <tbody id="tbody4">
 
               </tbody>
             </table>
@@ -619,24 +642,9 @@
 
     </section>
 
-    <section id="display_table_6">
+    <section id="display_table_8">
       <div class="container-fluid">
         <div class="row">
-          <div class="col">
-            <h6>-4-</h6>
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th scope="col">Class</th>
-                  <th scope="col">Credits</th>
-                  <th scope="col">Cost</th>
-              </tr>
-              </thead>
-              <tbody id="tbody4">
-
-              </tbody>
-            </table>
-          </div>
           <div class="col">
             <h6>-5-</h6>
             <table class="table table-striped">
@@ -645,7 +653,7 @@
                   <th scope="col">Class</th>
                   <th scope="col">Credits</th>
                   <th scope="col">Cost</th>
-              </tr>
+                </tr>
               </thead>
               <tbody id="tbody5">
 
@@ -660,21 +668,13 @@
                   <th scope="col">Class</th>
                   <th scope="col">Credits</th>
                   <th scope="col">Cost</th>
-              </tr>
+                </tr>
               </thead>
               <tbody id="tbody6">
 
               </tbody>
             </table>
           </div>
-        </div>
-      </div>
-
-    </section>
-
-    <section id="display_table_9">
-      <div class="container-fluid">
-        <div class="row">
           <div class="col">
             <h6>-7-</h6>
             <table class="table table-striped">
@@ -683,7 +683,7 @@
                   <th scope="col">Class</th>
                   <th scope="col">Credits</th>
                   <th scope="col">Cost</th>
-              </tr>
+                </tr>
               </thead>
               <tbody id="tbody7">
 
@@ -698,13 +698,21 @@
                   <th scope="col">Class</th>
                   <th scope="col">Credits</th>
                   <th scope="col">Cost</th>
-              </tr>
+                </tr>
               </thead>
               <tbody id="tbody8">
 
               </tbody>
             </table>
           </div>
+        </div>
+      </div>
+
+    </section>
+
+    <section id="display_table_10">
+      <div class="container-fluid">
+        <div class="row">
           <div class="col">
             <h6>-9-</h6>
             <table class="table table-striped">
@@ -713,26 +721,52 @@
                   <th scope="col">Class</th>
                   <th scope="col">Credits</th>
                   <th scope="col">Cost</th>
-              </tr>
+                </tr>
               </thead>
               <tbody id="tbody9">
 
               </tbody>
             </table>
           </div>
+          <div class="col">
+            <h6>-10-</h6>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Class</th>
+                  <th scope="col">Credits</th>
+                  <th scope="col">Cost</th>
+                </tr>
+              </thead>
+              <tbody id="tbody10">
+
+              </tbody>
+            </table>
+          </div>
+          <div class="col">
+
+          </div>
+          <div class="col">
+
+          </div>
         </div>
       </div>
     </section>
   </div>
-  <script type = "text/javascript">
-  function downloadPDF(){
-  const element = document.getElementById("download");
-  html2pdf().from(element).save();
-  }
+
+  <!-- Javascript code to download the schedule section into a pdf file -->
+  <script type="text/javascript">
+    function downloadPDF() {
+      const element = document.getElementById("download");
+      html2pdf().from(element).save();
+    }
   </script>
-    <h5 id="expected_graduation"></h5>
-    <button class="btn" onclick="downloadPDF()">Click to Download PDF of Schedule</button>
-  </body>
+
+  <!-- Has the expected graduation label and download pdf button -->
+  <h5 id="expected_graduation"></h5>
+  <button class="btn" onclick="downloadPDF()">Click to Download PDF of Schedule</button>
+</body>
+
 </html>
 
 
