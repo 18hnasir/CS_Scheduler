@@ -31,11 +31,21 @@ h6 {
   color: black;
 }
 
+.inform {
+  text-align: center;
+}
+
 #title {
   background-color: white;
 }
 
 #generate_button {
   padding: 2%;
+}
+
+#welcome {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
