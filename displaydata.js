@@ -14,8 +14,9 @@ function displayData() {
   if (creditsPreferred == "" || creditsPreferred < 12 || creditsPreferred > 18) { //sets default value for credits preferred if nothing is entered, if less than 12 or greater than 18
     creditsPreferred = 15;
   }
+  var mustInclude = getMustInclude(); //gets array of classes users wants for their schedule
   var coursesTaken = getInput(); //gets the user input/classes already taken
-  var courses = generateSchedule(coursesTaken, creditsPreferred); //gets the next semester classes to display
+  var courses = generateSchedule(coursesTaken, creditsPreferred, mustInclude); //gets the next semester classes to display
   var creditsPreferredBox = document.getElementById("inputGroup-sizing-default"); //get HTML element to hid once generate is clicked
   var creditsPreferredBox2 = document.getElementById("credits_preferred"); //get HTML element to hid once generate is clicked
   var generateButtonBox = document.getElementById("generate"); //get HTML element to hid once generate is clicked
@@ -121,7 +122,7 @@ function getInput() {
 }
 
 //function returns an array of classes that were checked in the must include section 
-export function getMustInclude() {
+function getMustInclude() {
   var mustIncludeClassList = ["BIOL103mi", "CHEM211mi", "GEOL101mi", "PHYS160mi", "STAT354mi", "OR335mi", "OR441mi", "OR442mi", "SWE432mi", "SWE437mi", "SWE443mi", "ENGH388mi", "CS332mi", "CS351mi",
         "CS455mi", "CS468mi", "CS475mi", "CS425mi", "CS440mi", "CS450mi", "CS451mi", "CS455mi",
         "CS463mi", "CS465mi", "CS468mi", "CS469mi", "CS475mi", "CS477mi", "CS480mi", "CS482mi", "CS484mi", "CS485mi",
