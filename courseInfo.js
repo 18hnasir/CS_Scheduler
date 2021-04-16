@@ -1,8 +1,5 @@
 
 export function getPreReq(className){
-
-// not fully implimented
-
     var courses = {"CS110" : [],"CS112" : ["MATH113"], "CS211" : ["CS112"],"CS222" : ["CS112"], 
     "CS262" : ["CS211","CS110"],"CS306" : ["COMM100", "ENGH302", "CS110"], "CS310" : ["CS211", "MATH113"],"CS321" : ["CS310", "ENGH302"], "CS325" : ["CS211"],
     "CS330" : ["CS211", "MATH125"], "CS332" : ["CS321"],"CS351" : ["CS262", "CS310"], "CS367" : ["MATH125", "CS262", "CS110"],
@@ -12,8 +9,8 @@ export function getPreReq(className){
     "CS463" : ["CS310", "CS367", "CS330"], "CS465" : ["CS367"],"CS468" : ["CS310", "CS367"], "CS469" : ["CS330", "CS367", "STAT344"],
     "CS471" : ["CS310", "CS367"], "CS475" : ["CS310", "CS367"],"CS477" : ["CS310", "CS367"], "CS480" : ["CS310", "CS330"],
     "CS482" : ["CS310", "STAT344", "MATH203"], "CS483" : ["CS310", "CS330", "MATH125"],"CS484" : ["CS310", "STAT344"], "CS485" : ["CS262", "MATH203", "CS310"],
-    "CS490" : ["CS321", "CS483"], "CS491" : ["CS321", "CS483", "CS367"],"CS498" : ["60"], "CS499" : ["CS310", "CS330"],
-    "MATH113" : ["MATH105"], "MATH114" : ["MATH113"],"MATH125" : ["MATH113"], "MATH203" : ["MATH114"],
+    "CS490" : ["CS321", "CS483"], "CS491" : ["CS321", "CS483", "CS367"],"CS498" : [], "CS499" : ["CS310", "CS330"],
+    "MATH113" : [], "MATH114" : ["MATH113"],"MATH125" : ["MATH113"], "MATH203" : ["MATH114"],
     "MATH213" : ["MATH114"], "STAT344" : ["MATH114"], "COMM101" : [],"COMM100" : [], "BIOL103" : [],
     "BIOL106" : [], "BIOL107" : ["*"],"CHEM211" : [], "CHEM213" : ["CHEM211"],
     "CHEM212" : ["*"], "CHEM214" : ["*"],"GEOL101" : [], "GEOL102" : [],
@@ -24,7 +21,8 @@ export function getPreReq(className){
     "ECE350" : ["CS262", "ECE301", "ECE332", "ECE280"], "ECE446" : ["CS465", "ECE445"],"ECE447" : ["ECE350"], "ECE511" : ["CS465"],
     "SWE432" : ["MATH125", "CS321"], "SWE437" : ["MATH125", "CS310"],"SWE443" : ["CS321"], "SYST371" : ["SYST210"],
     "SYST470" : ["STAT344", "SYST210"], "PHIL371" : ["3Creds"],"PHIL376" : ["PHIL173"], "ENGH388" : ["ENGH302"], 
-"ENGH101" : [], "WrittenCommunication" : [], "Arts" : [], "GlobalUnderstanding" : [], "SocialandBehavioralSciences" : [], "WesternCivilizationWorldHistory" : []};
+"ENGH101" : [], "WrittenCommunication" : [], "Arts" : [], "GlobalUnderstanding" : [], "SocialandBehavioralSciences" : [], "WesternCivilizationWorldHistory" : []
+, "Literature": []};
     return courses[className];
 }
 

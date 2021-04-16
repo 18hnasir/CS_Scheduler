@@ -1,8 +1,7 @@
 import { getPreReq } from './courseInfo.js';
 import { getCredits } from './courseInfo.js';
 
-// you can use this array to test the schedule generation with different classes taken
-generateSchedule([], 15);
+// this is the main function to generate a double array containing semesters until graduation
 export function generateSchedule(coursesTaken, creditsPreferred, mustInclude) {
 
     // keeps track of next semester and when that is filled up, it will add that semester to our semester's until graduation list
@@ -22,21 +21,41 @@ export function generateSchedule(coursesTaken, creditsPreferred, mustInclude) {
     var csSeniorList = shuffle(["CS455", "CS468", "CS475", "CS425", "CS440", "CS450", "CS451", "CS455",
     "CS463", "CS465", "CS468", "CS469", "CS475", "CS477", "CS480", "CS482", "CS484", "CS485",
     "CS490", "CS491", "CS499", "MATH446", "OR481"]);
-    var include = getMustInclude();
-    // adds counter to ensure generation stops
+
+    // adds all of the preReqs for a must include class to the must include list
+    for(var i=0;i<mustInclude.length;i++){
+        var reqs = getPreReq(mustInclude[i]);
+        for(var j=0;j<reqs.length;j++){
+            if(!mustInclude.includes(reqs[j])){
+                mustInclude.push(reqs[j]);
+            }
+        }
+    }
+
+
+
+    // adds counter as a failsafe to ensure generation stops
     var ct = 0;
-    while(!meetsRequirements(coursesTaken) && ct < 11){
+    var hasMustInclude = true;
+    while(!meetsRequirements(coursesTaken) && ct < 25 && hasMustInclude){
         var creditsInSemester = 0;
-        var ct2 = 0;
         // array containing next semester's classes
         while(creditsPreferred > creditsInSemester){
+
+            // adds a must include class to the schedule
+            for(var i=0;i<mustInclude.length;i++){
+                if(hasPreReqs(coursesTaken, mustInclude[i]) && !coursesTaken.includes(mustInclude[i]) && !nextSemesterClasses.includes(mustInclude[i])){
+                    nextSemesterClasses.push(mustInclude[i]);
+                    break;
+                }
+            }
 
             /* adds a mason core to the schedule*/
             var c; //count
             //loops through mason core list
             for (c in mason_core) {
                 // if the class is in the schedule then ignore it
-                if (coursesTaken.includes(mason_core[c]) && !nextSemesterClasses.includes(mason_core[c])) {
+                if (coursesTaken.includes(mason_core[c]) || nextSemesterClasses.includes(mason_core[c])) {
 
                 }
                 // otherwise add it to next semester's classes
@@ -54,7 +73,7 @@ export function generateSchedule(coursesTaken, creditsPreferred, mustInclude) {
             // loops through communications list
             for (c in communication) {
                 // if class is in the schedule then ignore it
-                if (coursesTaken.includes(communication[c]) && !nextSemesterClasses.includes(communication[c])) {
+                if (coursesTaken.includes(communication[c]) || nextSemesterClasses.includes(communication[c])) {
 
                 }
                 // otherwise add it to next semester's classes
@@ -70,7 +89,7 @@ export function generateSchedule(coursesTaken, creditsPreferred, mustInclude) {
                 break;
             }
             for (c in math) {
-                if (coursesTaken.includes(math[c]) && !nextSemesterClasses.includes(math[c])) {
+                if (coursesTaken.includes(math[c]) || nextSemesterClasses.includes(math[c])) {
 
                 }
                 else {
@@ -250,7 +269,6 @@ export function generateSchedule(coursesTaken, creditsPreferred, mustInclude) {
             // updates credits variable to break out of loop
             creditsInSemester = getSemesterCredits(nextSemesterClasses);
             // updates counter to ensure generation stops
-            ct2++;
         }
 
         nextSemesterClasses = [...new Set(nextSemesterClasses)];
@@ -261,8 +279,16 @@ export function generateSchedule(coursesTaken, creditsPreferred, mustInclude) {
         nextSemesterClasses = [];
         // updates counter to ensure we break out of the loop, this is only as a failsafe
         ct++;
+
+        // boolean to ensure the schedule contains all the must include classes
+        hasMustInclude = true;
+        // this will loop to check if any classes are missing from our must include list
+        for(var i=0;i<mustInclude.length;i++){
+            if(!coursesTaken.includes(mustInclude[i])){
+                hasMustInclude = false;
+            }
+        }
     }
-    console.log(semestersUntilGraduation);
     return semestersUntilGraduation;
 }
 
