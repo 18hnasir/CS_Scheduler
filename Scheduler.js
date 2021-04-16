@@ -1,10 +1,9 @@
 import { getPreReq } from './courseInfo.js';
 import { getCredits } from './courseInfo.js';
-import { getMustInclude } from './displaydata.js'
 
 // you can use this array to test the schedule generation with different classes taken
 generateSchedule([], 15);
-export function generateSchedule(coursesTaken, creditsPreferred) {
+export function generateSchedule(coursesTaken, creditsPreferred, mustInclude) {
 
     // keeps track of next semester and when that is filled up, it will add that semester to our semester's until graduation list
     var semestersUntilGraduation = [];
