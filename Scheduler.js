@@ -1,8 +1,9 @@
 import { getPreReq } from './courseInfo.js';
 import { getCredits } from './courseInfo.js';
-import { getMustInclude } from './displaydata.js'
+import { getMustInclude } from './InputController.js'
 
 // you can use this array to test the schedule generation with different classes taken
+generateSchedule([], 15);
 export function generateSchedule(coursesTaken, creditsPreferred) {
 
     // keeps track of next semester and when that is filled up, it will add that semester to our semester's until graduation list
@@ -233,6 +234,11 @@ export function generateSchedule(coursesTaken, creditsPreferred) {
                     return;
                 }
             });
+            // if next semester's credits is more than the preferred, then break out of the loop
+            if(creditsPreferred < getSemesterCredits(nextSemesterClasses)){
+                creditsInSemester = getSemesterCredits(nextSemesterClasses);
+                break;
+            }
 
             // this will ensure that there are not any duplicates in the next semester by turning the array into a set and back into an array
             nextSemesterClasses = [...new Set(nextSemesterClasses)];
@@ -248,8 +254,7 @@ export function generateSchedule(coursesTaken, creditsPreferred) {
             ct2++;
         }
 
-
-
+        nextSemesterClasses = [...new Set(nextSemesterClasses)];
 
         // adds next semester to courses taken and then resets nextsemester list so we can generate the next semester
         semestersUntilGraduation.push(nextSemesterClasses);
@@ -258,6 +263,7 @@ export function generateSchedule(coursesTaken, creditsPreferred) {
         // updates counter to ensure we break out of the loop, this is only as a failsafe
         ct++;
     }
+    console.log(semestersUntilGraduation);
     return semestersUntilGraduation;
 }
 
@@ -301,7 +307,7 @@ export function getSemesterCost(semester){
     else if(numCredits < 16 && numCredits > 11){
         return 4755 + 1752;
     }
-    else{
+    else {
         return 4755 + ((numCredits - 15) * 396.25) + 1752 + ((numCredits - 15) * 146);
     }
 }

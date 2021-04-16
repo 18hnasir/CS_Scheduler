@@ -15,13 +15,12 @@ export function getInput(){
 
     // Array holding all possible classes with their respective id's
     var ComputerScienceCoreId = ["CS110","CS112","CS211","CS262","CS306","CS310","CS321","CS330","CS367","CS471","CS483"];
-    var MasonCoreId = ["WrittenCommunication", "Literature", "Arts", "WesternCivilizationWorldHistory", "SocialandBehavioralSciences", "GlobalUnderstanding"]; 
+    var MasonCoreId = ["WC","LIT","ART","WCWH","SBS","GU"]; 
     var SeniorComputerScienceId = ["CS425","CS440","CS450","CS451","CS455","CS463","CS465","CS468","CS469","CS475","CS477","CS480","CS482","CS484","CS485","CS490","CS491","CS499","MATH446","OR481"];
     var MathematicsId = ["MATH113","MATH114","MATH125","MATH203","MATH213","STAT344"];
     var NaturalScienceId = ["BIOL103","BIOL107","CHEM211","CHEM212","GEOL101","GEOL102","PHYS160","PHYS260"];
-    var CommunicationEnglishId = ["ENGH101", "COMM100", "COMM101", "ENGH302"];
-    var ComputerScienceRelatedCoursesId = ["STAT354", "OR335", "OR441", "OR442", "ECE301", "ECE331", "ECE231", "ECE332", "ECE232",
-      "ECE350", "ECE446", "ECE447", "ECE511", "SWE432", "SWE437", "SWE443", "SYST371", "SYST470", "PHIL371", "PHIL376", "ENGH388", "CS332", "CS351"];
+    var CommunicationEnglishId = ["ENGH101", "COM100", "COM101", "ENGH302"];
+    var ComputerScienceRelatedCoursesId = ["CS332","CS351","STAT354","OR335","OR441","OR442","ECE301","ECE331ECE231","ECE332ECE232","ECE350","ECE446","ECE447","ECE511","SWE432","SWE437","SWE443","SYST371","SYST470","PHIL371","PHIL376","ENGH388"];
 
     // Computer Science Core Check
     
