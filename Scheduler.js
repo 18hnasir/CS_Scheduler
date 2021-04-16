@@ -38,24 +38,49 @@ export function generateSchedule(coursesTaken, creditsPreferred, mustInclude) {
     while(!meetsRequirements(coursesTaken) && ct < 25){
         var creditsInSemester = 0;
         // array containing next semester's classes
-        while(creditsPreferred > creditsInSemester){
-
+        var ct2 = 0;
+        while(creditsPreferred > creditsInSemester && ct2<25){
             // adds a must include class to the schedule
             for(var i=0;i<mustInclude.length;i++){
+                if(getCredits(mustInclude[i]) + getSemesterCredits(nextSemesterClasses) > 18){
+                    break;
+                }
                 if(hasPreReqs(coursesTaken, mustInclude[i]) && !coursesTaken.includes(mustInclude[i]) && !nextSemesterClasses.includes(mustInclude[i])){
                     nextSemesterClasses.push(mustInclude[i]);
                     break;
                 }
             }
             // if next semester's credits is more than the preferred, then break out of the loop
-            if(creditsPreferred < getSemesterCredits(nextSemesterClasses)){
-                creditsInSemester = getSemesterCredits(nextSemesterClasses);
+            if(creditsPreferred <= getSemesterCredits(nextSemesterClasses)){
+                nextSemesterClasses = [...new Set(nextSemesterClasses)];
+
+                // adds next semester to courses taken and then resets nextsemester list so we can generate the next semester
+                semestersUntilGraduation.push(nextSemesterClasses);
+                coursesTaken = coursesTaken.concat(nextSemesterClasses);
+                nextSemesterClasses = [];
+                // updates counter to ensure we break out of the loop, this is only as a failsafe
+                ct++;
+                ct2++;
+                // boolean for must includes
+                hasMustInclude = true;
+                // this will loop to check if any classes are missing from our must include list
+                for(var i=0;i<mustInclude.length;i++){
+                    if(!coursesTaken.includes(mustInclude[i] + "")){
+                        hasMustInclude = false;
+                    }
+                    else{
+                       mustInclude.splice(i, 1);
+                    }
+                }
                 break;
             }
             /* adds a mason core to the schedule*/
             var c; //count
             //loops through mason core list
             for (c in mason_core) {
+                if(getCredits(mason_core[c]) + getSemesterCredits(nextSemesterClasses) > 18){
+                    break;
+                }
                 // if the class is in the schedule then ignore it
                 if (coursesTaken.includes(mason_core[c]) || nextSemesterClasses.includes(mason_core[c])) {
 
@@ -68,12 +93,34 @@ export function generateSchedule(coursesTaken, creditsPreferred, mustInclude) {
                 }
             }
             // if next semester's credits is more than the preferred, then break out of the loop
-            if(creditsPreferred < getSemesterCredits(nextSemesterClasses)){
-                creditsInSemester = getSemesterCredits(nextSemesterClasses);
+            if(creditsPreferred <= getSemesterCredits(nextSemesterClasses)){
+                nextSemesterClasses = [...new Set(nextSemesterClasses)];
+
+                // adds next semester to courses taken and then resets nextsemester list so we can generate the next semester
+                semestersUntilGraduation.push(nextSemesterClasses);
+                coursesTaken = coursesTaken.concat(nextSemesterClasses);
+                nextSemesterClasses = [];
+                // updates counter to ensure we break out of the loop, this is only as a failsafe
+                ct++;
+                ct2++;
+                // boolean for must includes
+                hasMustInclude = true;
+                // this will loop to check if any classes are missing from our must include list
+                for(var i=0;i<mustInclude.length;i++){
+                    if(!coursesTaken.includes(mustInclude[i] + "")){
+                        hasMustInclude = false;
+                    }
+                    else{
+                       mustInclude.splice(i, 1);
+                    }
+                }
                 break;
             }
             // loops through communications list
             for (c in communication) {
+                if(getCredits(communication[c]) + getSemesterCredits(nextSemesterClasses) > 18){
+                    break;
+                }
                 // if class is in the schedule then ignore it
                 if (coursesTaken.includes(communication[c]) || nextSemesterClasses.includes(communication[c])) {
 
@@ -86,35 +133,101 @@ export function generateSchedule(coursesTaken, creditsPreferred, mustInclude) {
                 }
             }
             // if next semester's credits is more than the preferred, then break out of the loop
-            if(creditsPreferred < getSemesterCredits(nextSemesterClasses)){
-                creditsInSemester = getSemesterCredits(nextSemesterClasses);
+            if(creditsPreferred <= getSemesterCredits(nextSemesterClasses)){
+                nextSemesterClasses = [...new Set(nextSemesterClasses)];
+
+                // adds next semester to courses taken and then resets nextsemester list so we can generate the next semester
+                semestersUntilGraduation.push(nextSemesterClasses);
+                coursesTaken = coursesTaken.concat(nextSemesterClasses);
+                nextSemesterClasses = [];
+                // updates counter to ensure we break out of the loop, this is only as a failsafe
+                ct++;
+                ct2++;
+                // boolean for must includes
+                hasMustInclude = true;
+                // this will loop to check if any classes are missing from our must include list
+                for(var i=0;i<mustInclude.length;i++){
+                    if(!coursesTaken.includes(mustInclude[i] + "")){
+                        hasMustInclude = false;
+                    }
+                    else{
+                       mustInclude.splice(i, 1);
+                    }
+                }
                 break;
             }
             for (c in math) {
+                if(getCredits(math[c]) + getSemesterCredits(nextSemesterClasses) > 18){
+                    break;
+                }
                 if (coursesTaken.includes(math[c]) || nextSemesterClasses.includes(math[c])) {
 
                 }
-                else {
+                else{
                     nextSemesterClasses.push(math[c]);
                     math.shift();
                     break;
                 }
             }
             // if next semester's credits is more than the preferred, then break out of the loop
-            if(creditsPreferred < getSemesterCredits(nextSemesterClasses)){
-                creditsInSemester = getSemesterCredits(nextSemesterClasses);
+            if(creditsPreferred <= getSemesterCredits(nextSemesterClasses)){
+                nextSemesterClasses = [...new Set(nextSemesterClasses)];
+
+                // adds next semester to courses taken and then resets nextsemester list so we can generate the next semester
+                semestersUntilGraduation.push(nextSemesterClasses);
+                coursesTaken = coursesTaken.concat(nextSemesterClasses);
+                nextSemesterClasses = [];
+                // updates counter to ensure we break out of the loop, this is only as a failsafe
+                ct++;
+                ct2++;
+                // boolean for must includes
+                hasMustInclude = true;
+                // this will loop to check if any classes are missing from our must include list
+                for(var i=0;i<mustInclude.length;i++){
+                    if(!coursesTaken.includes(mustInclude[i] + "")){
+                        hasMustInclude = false;
+                    }
+                    else{
+                       mustInclude.splice(i, 1);
+                    }
+                }
                 break;
-            }            
+            }          
             // adds a must include class to the schedule
             for(var i=0;i<mustInclude.length;i++){
+                if(getCredits(mustInclude[i]) + getSemesterCredits(nextSemesterClasses) > 18){
+                    break;
+                }
                 if(hasPreReqs(coursesTaken, mustInclude[i]) && !coursesTaken.includes(mustInclude[i]) && !nextSemesterClasses.includes(mustInclude[i])){
                     nextSemesterClasses.push(mustInclude[i]);
                     break;
                 }
             }
             // if next semester's credits is more than the preferred, then break out of the loop
-            if(creditsPreferred < getSemesterCredits(nextSemesterClasses)){
-                creditsInSemester = getSemesterCredits(nextSemesterClasses);
+            if(creditsPreferred <= getSemesterCredits(nextSemesterClasses)){
+                nextSemesterClasses = [...new Set(nextSemesterClasses)];
+
+                // adds next semester to courses taken and then resets nextsemester list so we can generate the next semester
+                semestersUntilGraduation.push(nextSemesterClasses);
+                coursesTaken = coursesTaken.concat(nextSemesterClasses);
+                nextSemesterClasses = [];
+                // updates counter to ensure we break out of the loop, this is only as a failsafe
+                ct++;
+                ct2++;
+                // boolean for must includes
+                hasMustInclude = true;
+                // this will loop to check if any classes are missing from our must include list
+                for(var i=0;i<mustInclude.length;i++){
+                    if(getCredits(mustInclude[i]) + getSemesterCredits(nextSemesterClasses) > 18){
+                        break;
+                    }
+                    if(!coursesTaken.includes(mustInclude[i] + "")){
+                        hasMustInclude = false;
+                    }
+                    else{
+                       mustInclude.splice(i, 1);
+                    }
+                }
                 break;
             }
 
@@ -130,6 +243,9 @@ export function generateSchedule(coursesTaken, creditsPreferred, mustInclude) {
             }
             // loops through the science classes
             scienceList.forEach(scienceClass => {
+                if(getCredits(scienceClass) + getSemesterCredits(nextSemesterClasses) > 18){
+                    return;
+                }
                 if(scienceLoopStop){
                     return;
                 }
@@ -182,20 +298,64 @@ export function generateSchedule(coursesTaken, creditsPreferred, mustInclude) {
                 }
             });
             // if next semester's credits is more than the preferred, then break out of the loop
-            if(creditsPreferred < getSemesterCredits(nextSemesterClasses)){
-                creditsInSemester = getSemesterCredits(nextSemesterClasses);
+            if(creditsPreferred <= getSemesterCredits(nextSemesterClasses)){
+                nextSemesterClasses = [...new Set(nextSemesterClasses)];
+
+                // adds next semester to courses taken and then resets nextsemester list so we can generate the next semester
+                semestersUntilGraduation.push(nextSemesterClasses);
+                coursesTaken = coursesTaken.concat(nextSemesterClasses);
+                nextSemesterClasses = [];
+                // updates counter to ensure we break out of the loop, this is only as a failsafe
+                ct++;
+                ct2++;
+                // boolean for must includes
+                hasMustInclude = true;
+                // this will loop to check if any classes are missing from our must include list
+                for(var i=0;i<mustInclude.length;i++){
+                    if(!coursesTaken.includes(mustInclude[i] + "")){
+                        hasMustInclude = false;
+                    }
+                    else{
+                       mustInclude.splice(i, 1);
+                    }
+                }
                 break;
-            }            
+            }         
             // adds a must include class to the schedule
             for(var i=0;i<mustInclude.length;i++){
+                if(getCredits(mustInclude[i]) + getSemesterCredits(nextSemesterClasses) > 18){
+                    return;
+                }
                 if(hasPreReqs(coursesTaken, mustInclude[i]) && !coursesTaken.includes(mustInclude[i]) && !nextSemesterClasses.includes(mustInclude[i])){
                     nextSemesterClasses.push(mustInclude[i]);
                     break;
                 }
             }            
             // if next semester's credits is more than the preferred, then break out of the loop
-            if(creditsPreferred < getSemesterCredits(nextSemesterClasses)){
-                creditsInSemester = getSemesterCredits(nextSemesterClasses);
+            if(creditsPreferred <= getSemesterCredits(nextSemesterClasses)){
+                nextSemesterClasses = [...new Set(nextSemesterClasses)];
+
+                // adds next semester to courses taken and then resets nextsemester list so we can generate the next semester
+                semestersUntilGraduation.push(nextSemesterClasses);
+                coursesTaken = coursesTaken.concat(nextSemesterClasses);
+                nextSemesterClasses = [];
+                // updates counter to ensure we break out of the loop, this is only as a failsafe
+                ct++;
+                ct2++;
+                // boolean for must includes
+                hasMustInclude = true;
+                // this will loop to check if any classes are missing from our must include list
+                for(var i=0;i<mustInclude.length;i++){
+                    if(getCredits(mustInclude[i]) + getSemesterCredits(nextSemesterClasses) > 18){
+                        return;
+                    }
+                    if(!coursesTaken.includes(mustInclude[i] + "")){
+                        hasMustInclude = false;
+                    }
+                    else{
+                       mustInclude.splice(i, 1);
+                    }
+                }
                 break;
             }
             /*adds a cs core class to the schedule */
@@ -210,6 +370,9 @@ export function generateSchedule(coursesTaken, creditsPreferred, mustInclude) {
             }
             // Stop the loop if the student has taken 35 credits
             csCoreList.forEach(csClass => {
+                if(getCredits(csClass) + getSemesterCredits(nextSemesterClasses) > 18){
+                    return;
+                }
                 if (csCoreCredits >= 35) {
                     csCoreLoop = true;
                 }
@@ -222,25 +385,71 @@ export function generateSchedule(coursesTaken, creditsPreferred, mustInclude) {
                 }
             });
             // if next semester's credits is more than the preferred, then break out of the loop
-            if(creditsPreferred < getSemesterCredits(nextSemesterClasses)){
-                creditsInSemester = getSemesterCredits(nextSemesterClasses);
+            if(creditsPreferred <= getSemesterCredits(nextSemesterClasses)){
+                nextSemesterClasses = [...new Set(nextSemesterClasses)];
+
+                // adds next semester to courses taken and then resets nextsemester list so we can generate the next semester
+                semestersUntilGraduation.push(nextSemesterClasses);
+                coursesTaken = coursesTaken.concat(nextSemesterClasses);
+                nextSemesterClasses = [];
+                // updates counter to ensure we break out of the loop, this is only as a failsafe
+                ct++;
+                ct2++;
+                // boolean for must includes
+                hasMustInclude = true;
+                // this will loop to check if any classes are missing from our must include list
+                for(var i=0;i<mustInclude.length;i++){
+                    if(!coursesTaken.includes(mustInclude[i] + "")){
+                        hasMustInclude = false;
+                    }
+                    else{
+                       mustInclude.splice(i, 1);
+                    }
+                }
                 break;
-            }            
+            }           
             // adds a must include class to the schedule
             for(var i=0;i<mustInclude.length;i++){
+                // if adding the class would bring you over 18 credits
+                if(getCredits(mustInclude[i]) + getSemesterCredits(nextSemesterClasses) > 18){
+                    return;
+                }
                 if(hasPreReqs(coursesTaken, mustInclude[i]) && !coursesTaken.includes(mustInclude[i]) && !nextSemesterClasses.includes(mustInclude[i])){
                     nextSemesterClasses.push(mustInclude[i]);
                     break;
                 }
             }            
             // if next semester's credits is more than the preferred, then break out of the loop
-            if(creditsPreferred < getSemesterCredits(nextSemesterClasses)){
-                creditsInSemester = getSemesterCredits(nextSemesterClasses);
+            if(creditsPreferred <= getSemesterCredits(nextSemesterClasses)){
+                nextSemesterClasses = [...new Set(nextSemesterClasses)];
+
+                // adds next semester to courses taken and then resets nextsemester list so we can generate the next semester
+                semestersUntilGraduation.push(nextSemesterClasses);
+                coursesTaken = coursesTaken.concat(nextSemesterClasses);
+                nextSemesterClasses = [];
+                // updates counter to ensure we break out of the loop, this is only as a failsafe
+                ct++;
+                ct2++;
+                // boolean for must includes
+                hasMustInclude = true;
+                // this will loop to check if any classes are missing from our must include list
+                for(var i=0;i<mustInclude.length;i++){
+                    if(!coursesTaken.includes(mustInclude[i] + "")){
+                        hasMustInclude = false;
+                    }
+                    else{
+                       mustInclude.splice(i, 1);
+                    }
+                }
                 break;
             }
             // adds a cs related course to next semester's schedule
             var csLoopStop = false;
             csRelatedList.forEach(csClass => {
+                // if adding the class would bring you over 18 credits
+                if(getCredits(csClass) + getSemesterCredits(nextSemesterClasses) > 18){
+                    return;
+                }
                 if (hasPreReqs(coursesTaken, csClass) && !coursesTaken.includes(csClass) && !csLoopStop && !nextSemesterClasses.includes(csClass)) {
                     nextSemesterClasses.push(csClass);
                     csRelatedList.shift();
@@ -250,8 +459,31 @@ export function generateSchedule(coursesTaken, creditsPreferred, mustInclude) {
             }
             )
             // if next semester's credits is more than the preferred, then break out of the loop
-            if(creditsPreferred < getSemesterCredits(nextSemesterClasses)){
-                creditsInSemester = getSemesterCredits(nextSemesterClasses);
+            if(creditsPreferred <= getSemesterCredits(nextSemesterClasses)){
+                nextSemesterClasses = [...new Set(nextSemesterClasses)];
+
+                // adds next semester to courses taken and then resets nextsemester list so we can generate the next semester
+                semestersUntilGraduation.push(nextSemesterClasses);
+                coursesTaken = coursesTaken.concat(nextSemesterClasses);
+                nextSemesterClasses = [];
+                // updates counter to ensure we break out of the loop, this is only as a failsafe
+                ct++;
+                ct2++;
+                // boolean for must includes
+                hasMustInclude = true;
+                // this will loop to check if any classes are missing from our must include list
+                for(var i=0;i<mustInclude.length;i++){
+                    // if adding the class would bring you over 18 credits
+                    if(getCredits(mustInclude[i]) + getSemesterCredits(nextSemesterClasses) > 18){
+                        break;
+                    }
+                    if(!coursesTaken.includes(mustInclude[i] + "")){
+                        hasMustInclude = false;
+                    }
+                    else{
+                       mustInclude.splice(i, 1);
+                    }
+                }
                 break;
             }
 
@@ -267,6 +499,12 @@ export function generateSchedule(coursesTaken, creditsPreferred, mustInclude) {
             }
             // iterates through the senior cs class list
             csSeniorList.forEach(csClass => {
+
+                // if adding the class would bring you over 18 credits
+                if(getCredits(csClass) + getSemesterCredits(nextSemesterClasses) > 18){
+                    return;
+                }
+
                 // if you have enough credits then stop the loop
                 if (csSeniorCredits >= 15) {
                     csSeniorLoopStop = true;
@@ -291,20 +529,61 @@ export function generateSchedule(coursesTaken, creditsPreferred, mustInclude) {
                 }
             });
             // if next semester's credits is more than the preferred, then break out of the loop
-            if(creditsPreferred < getSemesterCredits(nextSemesterClasses)){
-                creditsInSemester = getSemesterCredits(nextSemesterClasses);
+            if(creditsPreferred <= getSemesterCredits(nextSemesterClasses)){
+                nextSemesterClasses = [...new Set(nextSemesterClasses)];
+
+                // adds next semester to courses taken and then resets nextsemester list so we can generate the next semester
+                semestersUntilGraduation.push(nextSemesterClasses);
+                coursesTaken = coursesTaken.concat(nextSemesterClasses);
+                nextSemesterClasses = [];
+                // updates counter to ensure we break out of the loop, this is only as a failsafe
+                ct++;
+                // boolean for must includes
+                hasMustInclude = true;
+                // this will loop to check if any classes are missing from our must include list
+                for(var i=0;i<mustInclude.length;i++){
+                    if(!coursesTaken.includes(mustInclude[i] + "")){
+                        hasMustInclude = false;
+                    }
+                    else{
+                       mustInclude.splice(i, 1);
+                    }
+                }
                 break;
-            }            
+            }       
             // adds a must include class to the schedule
             for(var i=0;i<mustInclude.length;i++){
+                // if adding the class would bring you over 18 credits
+                if(getCredits(mustInclude[i]) + getSemesterCredits(nextSemesterClasses) > 18){
+                    return;
+                }        
                 if(hasPreReqs(coursesTaken, mustInclude[i]) && !coursesTaken.includes(mustInclude[i]) && !nextSemesterClasses.includes(mustInclude[i])){
                     nextSemesterClasses.push(mustInclude[i]);
                     break;
                 }
             }
             // if next semester's credits is more than the preferred, then break out of the loop
-            if(creditsPreferred < getSemesterCredits(nextSemesterClasses)){
-                creditsInSemester = getSemesterCredits(nextSemesterClasses);
+            if(creditsPreferred <= getSemesterCredits(nextSemesterClasses)){
+                nextSemesterClasses = [...new Set(nextSemesterClasses)];
+
+                // adds next semester to courses taken and then resets nextsemester list so we can generate the next semester
+                semestersUntilGraduation.push(nextSemesterClasses);
+                coursesTaken = coursesTaken.concat(nextSemesterClasses);
+                nextSemesterClasses = [];
+                // updates counter to ensure we break out of the loop, this is only as a failsafe
+                ct++;
+                ct2++;
+                // boolean for must includes
+                hasMustInclude = true;
+                // this will loop to check if any classes are missing from our must include list
+                for(var i=0;i<mustInclude.length;i++){
+                    if(!coursesTaken.includes(mustInclude[i] + "")){
+                        hasMustInclude = false;
+                    }
+                    else{
+                       mustInclude.splice(i, 1);
+                    }
+                }
                 break;
             }
 
@@ -312,10 +591,30 @@ export function generateSchedule(coursesTaken, creditsPreferred, mustInclude) {
             nextSemesterClasses = [...new Set(nextSemesterClasses)];
 
             // if next semester's credits is more than the preferred, then break out of the loop
-            if(creditsPreferred < getSemesterCredits(nextSemesterClasses)){
-                creditsInSemester = getSemesterCredits(nextSemesterClasses);
+            if(creditsPreferred <= getSemesterCredits(nextSemesterClasses)){
+                nextSemesterClasses = [...new Set(nextSemesterClasses)];
+
+                // adds next semester to courses taken and then resets nextsemester list so we can generate the next semester
+                semestersUntilGraduation.push(nextSemesterClasses);
+                coursesTaken = coursesTaken.concat(nextSemesterClasses);
+                nextSemesterClasses = [];
+                // updates counter to ensure we break out of the loop, this is only as a failsafe
+                ct++;
+                ct2++;
+                // boolean for must includes
+                hasMustInclude = true;
+                // this will loop to check if any classes are missing from our must include list
+                for(var i=0;i<mustInclude.length;i++){
+                    if(!coursesTaken.includes(mustInclude[i] + "")){
+                        hasMustInclude = false;
+                    }
+                    else{
+                       mustInclude.splice(i, 1);
+                    }
+                }
                 break;
             }
+            ct2++;
             // updates credits variable to break out of loop
             creditsInSemester = getSemesterCredits(nextSemesterClasses);
             // updates counter to ensure generation stops
@@ -339,6 +638,11 @@ export function generateSchedule(coursesTaken, creditsPreferred, mustInclude) {
             else{
                mustInclude.splice(i, 1);
             }
+        }
+    }
+    for(var i=0;i<semestersUntilGraduation.length;i++){
+        if(semestersUntilGraduation[i].length == 0){
+            semestersUntilGraduation.splice(i,1);
         }
     }
     return semestersUntilGraduation;

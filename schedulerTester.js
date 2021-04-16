@@ -13,7 +13,7 @@ console.log("-------------------------------------------------------------------
 console.log("Test 1");
 console.log("---------------------------------------------------------------------------------------------------------------");
 // test 1
-// will test to ensure that a standard 15 credit schedule with no use inputted classes has 8 semesters and meets degree requirements
+// will test to ensure that a 15 credit schedule with no use inputted classes has 8 semesters and meets degree requirements
 var check1 = false;
 var check2 = false;
 var classUntilGrad = generateSchedule([], 15, []);
@@ -31,7 +31,6 @@ check2 = meetsRequirements(Allclasses);
 if(check1 && check2){
     numPassed++;
 }
-
 console.log("Expected: true Actual: "  + (check1 && check2));
 console.log("---------------------------------------------------------------------------------------------------------------");
 console.log("Test 2");
@@ -39,7 +38,7 @@ console.log("-------------------------------------------------------------------
 // test 2
 // will test to ensure that a schedule generated with a few user inputted classes meets degree requirements
 var check1 = false;
-var classUntilGrad2 = generateSchedule(["BIOL103", "CS110", "MATH113", "Arts", "STAT354"], 15, []);
+var classUntilGrad2 = generateSchedule(["BIOL103", "CS110", "MATH113", "Arts", "STAT354"], 18, []);
 var expectedGrad = graduationDate(classUntilGrad2);
 var Allclasses = [];
 for(var i=0;i<classUntilGrad2.length;i++){
@@ -51,7 +50,7 @@ check1 = meetsRequirements(Allclasses);
 if(check1){
     numPassed++;
 }
-
+//console.log(classUntilGrad2);
 console.log("Expected: true Actual: "  + (check1));
 
 
@@ -181,7 +180,7 @@ for(var i=0;i<mustHave.length;i++){
 if(check2){
     numPassed++;
 }
-console.log(classUntilGrad3);
+//console.log(classUntilGrad3);
 console.log("Expected: true Actual: "  + (check2));
 console.log("---------------------------------------------------------------------------------------------------------------");
 console.log("Tests Complete");
