@@ -163,8 +163,7 @@ console.log("-------------------------------------------------------------------
 // test 10
 // this will test to make sure a schedule will contain the must include classes
 var check2 = true;
-var mustHave = ["STAT354", "SWE432", "CS480", "CS490", "CS455", "CS477", "ECE301"];
-mustHave = [];
+var mustHave = ["SWE432", "CS480", "CS490", "CS455", "CS477", "ECE301"];
 var classUntilGrad3 = generateSchedule(["BIOL103", "CS110", "MATH113", "Arts", "STAT354"], 15, mustHave);
 var expectedGrad = graduationDate(classUntilGrad3);
 var Allclasses = [];
@@ -182,6 +181,7 @@ for(var i=0;i<mustHave.length;i++){
 if(check2){
     numPassed++;
 }
+console.log(classUntilGrad3);
 console.log("Expected: true Actual: "  + (check2));
 console.log("---------------------------------------------------------------------------------------------------------------");
 console.log("Tests Complete");

@@ -32,12 +32,10 @@ export function generateSchedule(coursesTaken, creditsPreferred, mustInclude) {
         }
     }
 
-
-
     // adds counter as a failsafe to ensure generation stops
     var ct = 0;
-    var hasMustInclude = true;
-    while(!meetsRequirements(coursesTaken) && ct < 25 && hasMustInclude){
+    var hasMustInclude = false;
+    while(!meetsRequirements(coursesTaken) && ct < 25){
         var creditsInSemester = 0;
         // array containing next semester's classes
         while(creditsPreferred > creditsInSemester){
@@ -49,7 +47,11 @@ export function generateSchedule(coursesTaken, creditsPreferred, mustInclude) {
                     break;
                 }
             }
-
+            // if next semester's credits is more than the preferred, then break out of the loop
+            if(creditsPreferred < getSemesterCredits(nextSemesterClasses)){
+                creditsInSemester = getSemesterCredits(nextSemesterClasses);
+                break;
+            }
             /* adds a mason core to the schedule*/
             var c; //count
             //loops through mason core list
@@ -95,6 +97,18 @@ export function generateSchedule(coursesTaken, creditsPreferred, mustInclude) {
                 else {
                     nextSemesterClasses.push(math[c]);
                     math.shift();
+                    break;
+                }
+            }
+            // if next semester's credits is more than the preferred, then break out of the loop
+            if(creditsPreferred < getSemesterCredits(nextSemesterClasses)){
+                creditsInSemester = getSemesterCredits(nextSemesterClasses);
+                break;
+            }            
+            // adds a must include class to the schedule
+            for(var i=0;i<mustInclude.length;i++){
+                if(hasPreReqs(coursesTaken, mustInclude[i]) && !coursesTaken.includes(mustInclude[i]) && !nextSemesterClasses.includes(mustInclude[i])){
+                    nextSemesterClasses.push(mustInclude[i]);
                     break;
                 }
             }
@@ -171,6 +185,18 @@ export function generateSchedule(coursesTaken, creditsPreferred, mustInclude) {
             if(creditsPreferred < getSemesterCredits(nextSemesterClasses)){
                 creditsInSemester = getSemesterCredits(nextSemesterClasses);
                 break;
+            }            
+            // adds a must include class to the schedule
+            for(var i=0;i<mustInclude.length;i++){
+                if(hasPreReqs(coursesTaken, mustInclude[i]) && !coursesTaken.includes(mustInclude[i]) && !nextSemesterClasses.includes(mustInclude[i])){
+                    nextSemesterClasses.push(mustInclude[i]);
+                    break;
+                }
+            }            
+            // if next semester's credits is more than the preferred, then break out of the loop
+            if(creditsPreferred < getSemesterCredits(nextSemesterClasses)){
+                creditsInSemester = getSemesterCredits(nextSemesterClasses);
+                break;
             }
             /*adds a cs core class to the schedule */
             var csCoreLoop = false;
@@ -195,6 +221,18 @@ export function generateSchedule(coursesTaken, creditsPreferred, mustInclude) {
                     return;
                 }
             });
+            // if next semester's credits is more than the preferred, then break out of the loop
+            if(creditsPreferred < getSemesterCredits(nextSemesterClasses)){
+                creditsInSemester = getSemesterCredits(nextSemesterClasses);
+                break;
+            }            
+            // adds a must include class to the schedule
+            for(var i=0;i<mustInclude.length;i++){
+                if(hasPreReqs(coursesTaken, mustInclude[i]) && !coursesTaken.includes(mustInclude[i]) && !nextSemesterClasses.includes(mustInclude[i])){
+                    nextSemesterClasses.push(mustInclude[i]);
+                    break;
+                }
+            }            
             // if next semester's credits is more than the preferred, then break out of the loop
             if(creditsPreferred < getSemesterCredits(nextSemesterClasses)){
                 creditsInSemester = getSemesterCredits(nextSemesterClasses);
@@ -256,6 +294,18 @@ export function generateSchedule(coursesTaken, creditsPreferred, mustInclude) {
             if(creditsPreferred < getSemesterCredits(nextSemesterClasses)){
                 creditsInSemester = getSemesterCredits(nextSemesterClasses);
                 break;
+            }            
+            // adds a must include class to the schedule
+            for(var i=0;i<mustInclude.length;i++){
+                if(hasPreReqs(coursesTaken, mustInclude[i]) && !coursesTaken.includes(mustInclude[i]) && !nextSemesterClasses.includes(mustInclude[i])){
+                    nextSemesterClasses.push(mustInclude[i]);
+                    break;
+                }
+            }
+            // if next semester's credits is more than the preferred, then break out of the loop
+            if(creditsPreferred < getSemesterCredits(nextSemesterClasses)){
+                creditsInSemester = getSemesterCredits(nextSemesterClasses);
+                break;
             }
 
             // this will ensure that there are not any duplicates in the next semester by turning the array into a set and back into an array
@@ -279,13 +329,15 @@ export function generateSchedule(coursesTaken, creditsPreferred, mustInclude) {
         nextSemesterClasses = [];
         // updates counter to ensure we break out of the loop, this is only as a failsafe
         ct++;
-
-        // boolean to ensure the schedule contains all the must include classes
+        // boolean for must includes
         hasMustInclude = true;
         // this will loop to check if any classes are missing from our must include list
         for(var i=0;i<mustInclude.length;i++){
-            if(!coursesTaken.includes(mustInclude[i])){
+            if(!coursesTaken.includes(mustInclude[i] + "")){
                 hasMustInclude = false;
+            }
+            else{
+               mustInclude.splice(i, 1);
             }
         }
     }
