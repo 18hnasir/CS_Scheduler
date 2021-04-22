@@ -8,85 +8,71 @@
 */
 
 // This function needs to return an array
-export function getInput(){
+//Function returns array of all checked inputs
+export function getInput() {
+  var csCoreList = ["CS110", "CS112", "CS211", "CS262", "CS306", "CS310", "CS321", "CS330", "CS367", "CS471", "CS483"];
+  var mason_core = shuffle(["WrittenCommunication", "Literature", "Arts", "WesternCivilizationWorldHistory", "SocialandBehavioralSciences", "GlobalUnderstanding"]);
+  var communication = ["ENGH101", "COMM100", "COMM101", "ENGH302"];
+  var math = ["MATH113", "MATH114", "MATH125", "MATH203", "MATH203", "MATH213", "STAT344"];
+  var scienceList = shuffle(["BIOL103", "CHEM211","GEOL101", "PHYS160"]);
+  var csRelatedList = shuffle(["STAT354", "OR335", "OR441", "OR442", "ECE301", "ECE331", "ECE231", "ECE332", "ECE232",
+      "ECE350", "ECE446", "ECE447", "ECE511", "SWE432", "SWE437", "SWE443", "SYST371", "SYST470", "PHIL371", "PHIL376", "ENGH388", "CS332", "CS351"]);
+  var csSeniorList = ["CS455", "CS468", "CS475", "CS425", "CS440", "CS450", "CS451", "CS455",
+      "CS463", "CS465", "CS468", "CS469", "CS475", "CS477", "CS480", "CS482", "CS484", "CS485",
+      "CS490", "CS491", "CS499", "MATH446", "OR481"];
+  var coursesTaken = []; //going to add checked classes to here
 
-    // Array that will hold all of the classes that were inputted
-    var myArray = []; 
-
-    // Array holding all possible classes with their respective id's
-    var ComputerScienceCoreId = ["CS110","CS112","CS211","CS262","CS306","CS310","CS321","CS330","CS367","CS471","CS483"];
-    var MasonCoreId = ["WC","LIT","ART","WCWH","SBS","GU"]; 
-    var SeniorComputerScienceId = ["CS425","CS440","CS450","CS451","CS455","CS463","CS465","CS468","CS469","CS475","CS477","CS480","CS482","CS484","CS485","CS490","CS491","CS499","MATH446","OR481"];
-    var MathematicsId = ["MATH113","MATH114","MATH125","MATH203","MATH213","STAT344"];
-    var NaturalScienceId = ["BIOL103","BIOL107","CHEM211","CHEM212","GEOL101","GEOL102","PHYS160","PHYS260"];
-    var CommunicationEnglishId = ["ENGH101", "COM100", "COM101", "ENGH302"];
-    var ComputerScienceRelatedCoursesId = ["CS332","CS351","STAT354","OR335","OR441","OR442","ECE301","ECE331ECE231","ECE332ECE232","ECE350","ECE446","ECE447","ECE511","SWE432","SWE437","SWE443","SYST371","SYST470","PHIL371","PHIL376","ENGH388"];
-
-    // Computer Science Core Check
-    
-    // Go through entire array of ComputerScienceCore Classes
-    for (var i = 0; i < ComputerScienceCoreId.length; i++){
-        // Check by id if the class if taken
-        if(document.getElementById(ComputerScienceCoreId[i].checked)){
-            // If the class checkbox is true, push the class to myArray
-            myArray.push(ComputerScienceCoreId[i]);
-        }
+  var i; //count
+  
+  //traverse each list to see if the checkbox was checked and into list
+  for (i in csCoreList) {
+    let cbox = document.getElementById(csCoreList[i]).checked; //going to get checkbox with class ID
+    if (cbox == true) { //if that checkbox is checked
+      coursesTaken.push(csCoreList[i]);
     }
+  }
 
-    // Mason Core Check
-    for (var i = 0; i < MasonCoreId.length; i++){
-        // Check by id if the class if taken
-        if(document.getElementById(MasonCoreId[i].checked)){
-            // If the class checkbox is true, push the class to myArray
-            myArray.push(MasonCoreId[i]);
-        }
+  for (i in mason_core) {
+    let cbox = document.getElementById(mason_core[i]).checked; //going to get checkbox with class ID
+    if (cbox == true) { //if that checkbox is checked
+      coursesTaken.push(mason_core[i]);
     }
+  }
 
-    // Senior Computer Science Check
-    for (var i = 0; i < SeniorComputerScienceId.length; i++){
-        // Check by id if the class if taken
-        if(document.getElementById(SeniorComputerScienceId[i].checked)){
-            // If the class checkbox is true, push the class to myArray
-            myArray.push(SeniorComputerScienceId[i]);
-        }
+  for (i in communication) {
+    let cbox = document.getElementById(communication[i]).checked; //going to get checkbox with class ID
+    if (cbox == true) { //if that checkbox is checked
+      coursesTaken.push(communication[i]);
     }
+  }
 
-    // Mathematics Check
-    for (var i = 0; i < MathematicsId.length; i++){
-        // Check by id if the class if taken
-        if(document.getElementById(MathematicsId[i].checked)){
-            // If the class checkbox is true, push the class to myArray
-            myArray.push(MathematicsId[i]);
-        }
+  for (i in math) {
+    let cbox = document.getElementById(math[i]).checked; //going to get checkbox with class ID
+    if (cbox == true) { //if that checkbox is checked
+      coursesTaken.push(math[i]);
     }
+  }
 
-    // Natural Science Check
-    for (var i = 0; i < NaturalScienceId.length; i++){
-        // Check by id if the class if taken
-        if(document.getElementById(NaturalScienceId[i].checked)){
-            // If the class checkbox is true, push the class to myArray
-            myArray.push(NaturalScienceId[i]);
-        }
+  for (i in scienceList) {
+    let cbox = document.getElementById(scienceList[i]).checked; //going to get checkbox with class ID
+    if (cbox == true) { //if that checkbox is checked
+      coursesTaken.push(scienceList[i]);
     }
+  }
 
-    // Communication and English Check
-    for (var i = 0; i < CommunicationEnglishId.length; i++){
-        // Check by id if the class if taken
-        if(document.getElementById(CommunicationEnglishId[i].checked)){
-            // If the class checkbox is true, push the class to myArray
-            myArray.push(CommunicationEnglishId[i]);
-        }
+  for (i in csRelatedList) {
+    let cbox = document.getElementById(csRelatedList[i]).checked; //going to get checkbox with class ID
+    if (cbox == true) { //if that checkbox is checked
+      coursesTaken.push(csRelatedList[i]);
     }
+  }
 
-    // Computer Science Related Check
-    for (var i = 0; i < ComputerScienceRelatedCoursesId.length; i++){
-        // Check by id if the class if taken
-        if(document.getElementById(ComputerScienceRelatedCoursesId[i].checked)){
-            // If the class checkbox is true, push the class to myArray
-            myArray.push(ComputerScienceRelatedCoursesId[i]);
-        }
+  for (i in csSeniorList) {
+    let cbox = document.getElementById(csSeniorList[i]).checked; //going to get checkbox with class ID
+    if (cbox == true) { //if that checkbox is checked
+      coursesTaken.push(csSeniorList[i]);
     }
+  }
 
-    // Return myArray after everything has been checked
-    return myArray
+  return coursesTaken;
 }
